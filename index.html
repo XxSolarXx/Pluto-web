@@ -4,89 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pluto Executor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Global Styles */
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #E0E0E0;
+      font-family: 'Roboto', sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
+      line-height: 1.6;
     }
     header {
       display: flex;
       justify-content: center;
       padding: 16px;
-      gap: 16px;
+      gap: 20px;
       border-bottom: 1px solid #333;
+      background-color: #1E1E1E;
     }
     a {
-      color: #fff;
+      color: #BB86FC;
       text-decoration: none;
-      padding: 8px 16px;
-      border: 1px solid #fff;
+      padding: 10px 15px;
       border-radius: 4px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
     }
     a:hover {
-      background-color: #333;
+      background-color: #BB86FC;
+      color: #000;
+      transform: scale(1.05);
     }
     /* Title Styling */
-    .main-title, .section-title {
+    .main-title {
       font-size: 4em;
-      color: #ccc;
-      margin: 40px 0 16px;
-      letter-spacing: 1px;
+      margin: 40px 0 10px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     .sub-title {
       font-size: 1.5em;
-      color: #aaa;
+      color: #B0BEC5;
       margin-bottom: 40px;
     }
     .btn-container {
       display: flex;
-      gap: 20px;
+      gap: 30px;
       justify-content: center;
       margin-top: 24px;
     }
     .button {
-      display: inline-block;
-      color: #fff;
-      background-color: #444;
-      border: 2px solid #fff;
+      background-color: #6200EE;
+      color: #FFFFFF;
+      border: none;
       padding: 12px 24px;
       border-radius: 6px;
-      font-size: 1.1em;
+      font-size: 1.2em;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
     }
     .button:hover {
-      background-color: #666;
+      background-color: #3700B3;
       transform: scale(1.05);
     }
-    .button:active {
-      background-color: #555;
-      transform: scale(1);
-    }
     section {
-      padding: 64px 16px;
+      padding: 60px 16px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid #333;
+      background-color: #1E1E1E;
     }
     .spacer {
       height: 80px;
     }
     /* Additional styling for the description text */
     .description {
-      margin-top: 40px; /* Adjusted margin to move the text lower */
+      margin-top: 30px; /* Adjusted margin to move the text lower */
       max-width: 800px;
-      line-height: 1.6; /* Added line height for better readability */
+      font-size: 1.1em; /* Slightly larger text for better readability */
+      color: #B0BEC5;
+      padding: 0 20px;
+    }
+    ul {
+      text-align: left;
+      margin: 20px auto;
+      max-width: 600px;
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    /* Credit Section */
+    footer {
+      padding: 20px 0;
+      background-color: #1E1E1E;
+      color: #B0BEC5;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -107,11 +123,8 @@
   <!-- Home Section -->
   <section>
     <h1 class="main-title">Pluto Executor</h1>
+    <img src="image.png" alt="Pluto Executor Image" style="max-width: 100%; height: auto; margin-bottom: 20px;"/>
     <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
-    
-    <!-- Image inclusion -->
-    <img src="C:\Users\Tazei\Downloads\pluto interferece" alt="Pluto Executor Image" style="max-width: 100%; height: auto; margin-bottom: 20px;"/>
-
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
         <div class="button">Download Now</div>
@@ -131,7 +144,7 @@
   <!-- Features Section -->
   <section>
     <h1 class="section-title">Pluto Executor Features</h1>
-    <p>
+    <p class="description">
       Pluto Executor is packed with features that make it a top choice for Roblox enthusiasts. Its standout UNC percentage of 72% ensures that your scripts run smoothly and effectively. Here’s what you can expect:
     </p>
     <ul>
@@ -141,7 +154,7 @@
       <li><strong>Robust Security:</strong> Built-in measures to protect your account and ensure a safe experience.</li>
       <li><strong>Active Community:</strong> Join a vibrant community of users who share tips, scripts, and support.</li>
     </ul>
-    <p>
+    <p class="description">
       Whether you're looking to dominate in Arsenal or enhance your experiences in other games, Pluto Executor is the perfect tool for you. Don’t miss out—download now!
     </p>
   </section>
@@ -152,13 +165,18 @@
   <!-- Credits Section -->
   <section>
     <h1 class="section-title">Pluto Executor Credits</h1>
-    <p>
+    <p class="description">
       This project was developed by ytz_solar (Discord). Your support and feedback are invaluable as we continue to improve and expand the Pluto Executor. If you encounter any issues or have questions, please reach out to our dedicated support team through our Discord server. Open a ticket or contact ytz_solar directly for assistance.
     </p>
-    <p>
+    <p class="description">
       Thank you for choosing Pluto Executor. Together, let’s make your Roblox experience extraordinary!
     </p>
   </section>
+
+  <!-- Footer Section -->
+  <footer>
+    &copy; 2024 Pluto Executor. All rights reserved.
+  </footer>
   
 </body>
 </html>
