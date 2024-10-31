@@ -43,6 +43,7 @@
       letter-spacing: 2px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       color: #00509E; /* Lighter blue for better visibility */
+      animation: fadeIn 1s ease-in-out, float 3s ease-in-out infinite; /* Adding fade-in and float animations */
     }
     .sub-title {
       font-size: 1.5em;
@@ -64,11 +65,13 @@
       font-size: 1.2em;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Added box-shadow transition */
+      animation: slideIn 0.5s ease-in-out, float 3s ease-in-out infinite; /* Slide-in and float animations */
     }
     .button:hover {
       background-color: #3700B3;
       transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Adding shadow on hover */
     }
     section {
       padding: 60px 16px;
@@ -105,6 +108,35 @@
       background-color: #000000; /* Ensure footer is also black */
       color: #FFFFFF; /* White text for better contrast */
       font-size: 0.9em;
+    }
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px); /* Move up by 10 pixels */
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -147,49 +179,25 @@
   <section>
     <h1 class="section-title" style="color: #FFFFFF;">What Makes Pluto Executor Stand Out?</h1>
     <p class="description">
-      Pluto Executor is packed with features that make it a top choice for Roblox enthusiasts. It boasts a standout UNC percentage of 72%, ensuring your scripts run smoothly and effectively. Here’s what you can expect:
+      Pluto Executor offers a range of features that set it apart from the competition:
     </p>
     <ul>
-      <li><strong>Script Compatibility:</strong> Supports a wide range of scripts, allowing for a versatile gameplay experience.</li>
-      <li><strong>User-Friendly Interface:</strong> Our intuitive design makes it easy to use, even if you’re new to scripting.</li>
-      <li><strong>Customizable Options:</strong> Tailor your executor settings to fit your unique gameplay style.</li>
-      <li><strong>Robust Security:</strong> Built-in measures to protect your account and ensure a safe experience.</li>
-      <li><strong>Active Community:</strong> Join a vibrant community of users who share tips, scripts, and support.</li>
+      <li>Easy-to-use interface</li>
+      <li>Powerful script execution</li>
+      <li>Frequent updates and improvements</li>
+      <li>Active community support</li>
+      <li>Robust security measures</li>
     </ul>
-    <p class="description">
-      Whether you're aiming to dominate in Arsenal or just want to enhance your gaming experience, Pluto Executor is here to help you every step of the way. Don't miss out—download now and take your gameplay to the next level!
-    </p>
   </section>
 
   <!-- Spacer for scrolling -->
   <div class="spacer" id="credits"></div>
 
   <!-- Credits Section -->
-  <section>
-    <h1 class="section-title" style="color: #FFFFFF;">Pluto Executor Credits</h1>
-    <p class="description">
-      A huge shoutout to ytz_solar (Discord) for developing this awesome tool. Your support and feedback mean the world to us as we continue to improve and expand Pluto Executor. If you run into any issues or have questions, feel free to reach out to our dedicated support team through our Discord server. You can also contact ytz_solar directly for assistance.
-    </p>
-    <p class="description">
-      Thanks for choosing Pluto Executor! Together, we’ll make your Roblox adventures extraordinary!
-    </p>
-  </section>
-
-  <!-- Contact or Support Section -->
-  <section>
-    <h1 class="section-title" style="color: #FFFFFF;">Need Help? We're Here for You!</h1>
-    <p class="description">
-      If you have any questions, concerns, or just want to say hi, don’t hesitate to reach out! You can contact us at <strong>pluto.help.me121@gmail.com</strong>. Our team is always ready to assist you with whatever you need.
-    </p>
-    <p class="description">
-      Your experience matters to us, so let us know how we can help make it even better!
-    </p>
-  </section>
-
-  <!-- Footer Section -->
   <footer>
-    &copy; 2024 Pluto Executor. All rights reserved.
+    <h2>Credits</h2>
+    <p>This tool was developed by Solar. Thank you for your support!</p>
+    <p>Find us on <a href="https://discord.gg/plutoexecutor" style="color: #BB86FC;">Discord</a> for more updates!</p>
   </footer>
-  
 </body>
 </html>
