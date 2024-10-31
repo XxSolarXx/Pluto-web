@@ -13,6 +13,8 @@
       text-align: center;
       margin: 0;
       padding: 0;
+      position: relative; /* Allow absolute positioning for the trial */
+      overflow: hidden; /* Prevent scrollbars due to trial movement */
     }
     header {
       display: flex;
@@ -88,6 +90,16 @@
       max-width: 800px;
       line-height: 1.6; /* Added line height for better readability */
     }
+    /* Trial styling */
+    .trial {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      pointer-events: none; /* Prevent the trial from interfering with clicks */
+      transition: transform 0.1s; /* Smooth movement */
+    }
   </style>
 </head>
 <body>
@@ -155,6 +167,20 @@
       Thank you for choosing Pluto Executor. Together, let’s make your Roblox experience extraordinary!
     </p>
   </section>
-  
+
+  <!-- Trial Element -->
+  <div class="trial" id="trial"></div>
+
+  <script>
+    // JavaScript to make the trial follow the mouse cursor
+    const trial = document.getElementById('trial');
+
+    document.addEventListener('mousemove', (event) => {
+      const x = event.clientX; // Get the mouse X position
+      const y = event.clientY; // Get the mouse Y position
+      trial.style.transform = `translate(${x}px, ${y}px)`; // Move the trial
+    });
+  </script>
+
 </body>
 </html>
