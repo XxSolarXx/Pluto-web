@@ -139,25 +139,24 @@
       }
     }
 
-    /* Mouse Movement Effect */
-    .mouse-effect {
+    /* Sparkle Effect */
+    .sparkle {
       position: absolute;
-      width: 20px; /* Size of the effect */
-      height: 20px;
-      background-color: #00509E; /* Color of the effect */
+      width: 5px; /* Size of each sparkle */
+      height: 5px;
+      background-color: #00509E; /* Color of the sparkle */
       border-radius: 50%; /* Circular shape */
       pointer-events: none; /* Prevents interference with mouse events */
-      transform: translate(-50%, -50%); /* Center the effect */
-      transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-      will-change: transform; /* Hint for performance */
-      opacity: 0.7; /* Slight transparency */
+      opacity: 0; /* Start invisible */
+      transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition */
+      will-change: transform, opacity; /* Hint for performance */
     }
   </style>
 </head>
 <body>
 
-  <!-- Mouse Effect -->
-  <div class="mouse-effect" id="mouseEffect"></div>
+  <!-- Sparkle Effects -->
+  <div id="sparkleContainer"></div>
 
   <!-- Header with Navigation -->
   <header>
@@ -214,13 +213,33 @@
   </section>
 
   <script>
-    // Mouse Movement Effect
-    const mouseEffect = document.getElementById('mouseEffect');
+    // Sparkle Effect
+    const sparkleContainer = document.getElementById('sparkleContainer');
 
     document.addEventListener('mousemove', (e) => {
-      mouseEffect.style.left = e.pageX + 'px';
-      mouseEffect.style.top = e.pageY + 'px';
+      createSparkle(e.pageX, e.pageY);
     });
+
+    function createSparkle(x, y) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+      sparkle.style.opacity = 1; // Make it visible
+      sparkle.style.transform = `translate(-50%, -50%) scale(1)`; // Positioning and scaling
+      sparkleContainer.appendChild(sparkle);
+
+      // Remove the sparkle after a short time
+      setTimeout(() => {
+        sparkle.style.opacity = 0; // Fade out
+        sparkle.style.transform = `translate(-50%, -50%) scale(0.5)`; // Scale down
+      }, 100);
+
+      // Clean up the sparkle element after animation
+      sparkle.addEventListener('transitionend', () => {
+        sparkle.remove();
+      });
+    }
   </script>
 </body>
 </html>
