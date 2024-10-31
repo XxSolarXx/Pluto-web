@@ -1,182 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pluto Executor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Global Styles */
-    body {
-      background-color: #121212;
-      color: #E0E0E0;
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      display: flex;
-      justify-content: center;
-      padding: 16px;
-      gap: 20px;
-      border-bottom: 1px solid #333;
-      background-color: #1E1E1E;
-    }
-    a {
-      color: #BB86FC;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    a:hover {
-      background-color: #BB86FC;
-      color: #000;
-      transform: scale(1.05);
-    }
-    /* Title Styling */
-    .main-title {
-      font-size: 4em;
-      margin: 40px 0 10px;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    .sub-title {
-      font-size: 1.5em;
-      color: #B0BEC5;
-      margin-bottom: 40px;
-    }
-    .btn-container {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      margin-top: 24px;
-    }
-    .button {
-      background-color: #6200EE;
-      color: #FFFFFF;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 1.2em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .button:hover {
-      background-color: #3700B3;
-      transform: scale(1.05);
-    }
-    section {
-      padding: 60px 16px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #333;
-      background-color: #1E1E1E;
-    }
-    .spacer {
-      height: 80px;
-    }
-    /* Additional styling for the description text */
-    .description {
-      margin-top: 30px; /* Adjusted margin to move the text lower */
-      max-width: 800px;
-      font-size: 1.1em; /* Slightly larger text for better readability */
-      color: #B0BEC5;
-      padding: 0 20px;
-    }
-    ul {
-      text-align: left;
-      margin: 20px auto;
-      max-width: 600px;
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-    /* Credit Section */
-    footer {
-      padding: 20px 0;
-      background-color: #1E1E1E;
-      color: #B0BEC5;
-      font-size: 0.9em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluto Executor</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid #333;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #333;
+        }
+        /* Title Styling */
+        .main-title, .section-title {
+            font-size: 4em;
+            color: #ccc;
+            margin: 40px 0 16px;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        .button {
+            display: inline-block;
+            color: #fff;
+            background-color: #444;
+            border: 2px solid #fff;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background-color: #666;
+            transform: scale(1.05);
+        }
+        .button:active {
+            background-color: #555;
+            transform: scale(1);
+        }
+        section {
+            padding: 64px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #333;
+        }
+        .description {
+            margin-top: 20px; /* Adjusted margin for better spacing */
+            max-width: 800px;
+            line-height: 1.6; /* Added line height for better readability */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        form input, form textarea {
+            padding: 10px;
+            margin: 5px 0;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form input[type="submit"] {
+            background-color: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #666;
+        }
+        footer {
+            padding: 20px;
+            border-top: 1px solid #333;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Header with Navigation -->
-  <header>
-    <a href="#home">Home</a>
-    <a href="#features">Features</a>
-    <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">Download</a>
-    <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">Discord</a>
-    <a href="#credits">Credits</a>
-  </header>
+    <header>
+        <h1 class="main-title">Pluto Executor</h1>
+        <p class="subtitle">The most powerful executor for Roblox, crafted to meet all your needs!</p>
+    </header>
 
-  <!-- Spacer for scrolling -->
-  <div class="spacer" id="home"></div>
+    <section id="features">
+        <h1 class="section-title">Features</h1>
+        <ul class="description">
+            <li>Fast and reliable script execution</li>
+            <li>User-friendly interface</li>
+            <li>Supports a wide range of scripts</li>
+            <li>Regular updates and improvements</li>
+        </ul>
+    </section>
 
-  <!-- Home Section -->
-  <section>
-    <h1 class="main-title">Pluto Executor</h1>
-    <img src="image.png" alt="Pluto Executor Image" style="max-width: 100%; height: auto; margin-bottom: 20px;"/>
-    <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
-    <div class="btn-container">
-      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
-        <div class="button">Download Now</div>
-      </a>
-      <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
-        <div class="button">Join Our Discord</div>
-      </a>
-    </div>
-    <p class="description">
-      Pluto Executor is designed to enhance your Roblox gaming experience. It offers powerful execution capabilities that let you run scripts with ease, providing you with the tools to customize your gameplay, cheat effectively, and fully explore the potential of Roblox.
-    </p>
-  </section>
+    <section id="download">
+        <h1 class="section-title">Download Now</h1>
+        <p class="description">Get the latest version of Pluto Executor to start enhancing your Roblox experience.</p>
+        <a href="C:\Users\Tazei\Downloads\pluto interferece\image.png" class="button">Download</a>
+    </section>
 
-  <!-- Spacer for scrolling -->
-  <div class="spacer" id="features"></div>
+    <section id="user-reviews">
+        <h1 class="section-title">User Reviews</h1>
+        <div class="description">
+            <blockquote>"Pluto Executor changed the way I play Roblox! The features are top-notch!" - User123</blockquote>
+            <blockquote>"Easy to use and very effective. Highly recommend!" - GamerGuy</blockquote>
+        </div>
+    </section>
 
-  <!-- Features Section -->
-  <section>
-    <h1 class="section-title">Pluto Executor Features</h1>
-    <p class="description">
-      Pluto Executor is packed with features that make it a top choice for Roblox enthusiasts. Its standout UNC percentage of 72% ensures that your scripts run smoothly and effectively. Here’s what you can expect:
-    </p>
-    <ul>
-      <li><strong>Script Compatibility:</strong> Supports a wide range of scripts, allowing for a versatile gameplay experience.</li>
-      <li><strong>User-Friendly Interface:</strong> An intuitive design makes it easy to use, even for beginners.</li>
-      <li><strong>Customizable Options:</strong> Tailor your executor settings to fit your gameplay style.</li>
-      <li><strong>Robust Security:</strong> Built-in measures to protect your account and ensure a safe experience.</li>
-      <li><strong>Active Community:</strong> Join a vibrant community of users who share tips, scripts, and support.</li>
-    </ul>
-    <p class="description">
-      Whether you're looking to dominate in Arsenal or enhance your experiences in other games, Pluto Executor is the perfect tool for you. Don’t miss out—download now!
-    </p>
-  </section>
+    <section id="contact">
+        <h1 class="section-title">Contact Us</h1>
+        <p class="description">For support, please reach out through our Discord server or fill out the contact form below:</p>
+        <form action="contact_form_handler.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <input type="submit" value="Send">
+        </form>
+    </section>
 
-  <!-- Spacer for scrolling -->
-  <div class="spacer" id="credits"></div>
+    <section id="follow-us">
+        <h1 class="section-title">Follow Us</h1>
+        <p class="description">Stay updated with the latest news and features:</p>
+        <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://youtube.com/yourchannel" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </section>
 
-  <!-- Credits Section -->
-  <section>
-    <h1 class="section-title">Pluto Executor Credits</h1>
-    <p class="description">
-      This project was developed by ytz_solar (Discord). Your support and feedback are invaluable as we continue to improve and expand the Pluto Executor. If you encounter any issues or have questions, please reach out to our dedicated support team through our Discord server. Open a ticket or contact ytz_solar directly for assistance.
-    </p>
-    <p class="description">
-      Thank you for choosing Pluto Executor. Together, let’s make your Roblox experience extraordinary!
-    </p>
-  </section>
+    <footer>
+        <p class="footer-text">© 2024 Pluto Executor. All rights reserved.</p>
+    </footer>
 
-  <!-- Footer Section -->
-  <footer>
-    &copy; 2024 Pluto Executor. All rights reserved.
-  </footer>
-  
 </body>
 </html>
