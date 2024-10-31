@@ -50,8 +50,19 @@
     button:hover {
       background-color: #333;
     }
+    /* Section Styling */
     section {
-      padding: 32px;
+      padding: 64px 16px;
+      min-height: 100vh; /* Ensures each section fills at least one viewport height */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #333;
+    }
+    /* Spacer for smooth scrolling */
+    .spacer {
+      height: 80px;
     }
   </style>
 </head>
@@ -66,40 +77,44 @@
     <a href="#credits">Credits</a>
   </header>
 
-  <!-- Main Content -->
-  <main>
+  <!-- Spacer for scrolling -->
+  <div class="spacer" id="home"></div>
 
-    <!-- Home Section -->
-    <section id="home">
-      <h1>Pluto Executor</h1>
-      <p>The most powerful executor for Roblox met with all your needs!</p>
-      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
-        <button>Download</button>
-      </a>
-      <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
-        <button>Join Discord</button>
-      </a>
-    </section>
+  <!-- Home Section -->
+  <section>
+    <h1>Pluto Executor</h1>
+    <p>The most powerful executor for Roblox met with all your needs!</p>
+    <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
+      <button>Download</button>
+    </a>
+    <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
+      <button>Join Discord</button>
+    </a>
+  </section>
 
-    <!-- Features Section -->
-    <section id="features">
-      <h1>Pluto Executor Features</h1>
-      <p>
-        This Roblox executor has many features. It has a UNC percentage of 72% and can take in all your needs for Roblox scripts.
-        Want to cheat on Arsenal? Now you can using this executor. Download now!
-      </p>
-    </section>
+  <!-- Spacer for scrolling -->
+  <div class="spacer" id="features"></div>
 
-    <!-- Credits Section -->
-    <section id="credits">
-      <h1>Pluto Executor Credits</h1>
-      <p>
-        This was all made by ytz_solar (on Discord). If there are any problems, go to the Discord and open a ticket,
-        or contact ytz_solar for help if needed.
-      </p>
-    </section>
-    
-  </main>
+  <!-- Features Section -->
+  <section>
+    <h1>Pluto Executor Features</h1>
+    <p>
+      This Roblox executor has many features. It has a UNC percentage of 72% and can take in all your needs for Roblox scripts.
+      Want to cheat on Arsenal? Now you can using this executor. Download now!
+    </p>
+  </section>
 
+  <!-- Spacer for scrolling -->
+  <div class="spacer" id="credits"></div>
+
+  <!-- Credits Section -->
+  <section>
+    <h1>Pluto Executor Credits</h1>
+    <p>
+      This was all made by ytz_solar (on Discord). If there are any problems, go to the Discord and open a ticket,
+      or contact ytz_solar for help if needed.
+    </p>
+  </section>
+  
 </body>
 </html>
