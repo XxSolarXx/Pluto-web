@@ -229,7 +229,7 @@
     });
 
     function createSparkles(x, y) {
-      for (let i = 0; i < 3; i++) { // Create 3 sparkles per mouse movement
+      for (let i = 0; i < 2; i++) { // Create 2 sparkles per mouse movement
         const sparkle = document.createElement('div');
         sparkle.classList.add('sparkle');
         sparkle.style.left = `${x + (Math.random() - 0.5) * 30}px`; // Random position around cursor
