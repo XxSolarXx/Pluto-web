@@ -33,34 +33,50 @@
       background-color: #333;
     }
     h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       color: #ccc;
       margin: 16px 0;
     }
-    button {
+    h2 {
+      font-size: 1.5em;
+      color: #aaa;
+      margin-bottom: 16px;
+    }
+    .btn-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+    .button {
+      display: inline-block;
       color: #fff;
-      background-color: transparent;
-      border: 1px solid #fff;
-      padding: 10px 20px;
-      border-radius: 4px;
-      margin: 16px 8px;
+      background-color: #444;
+      border: 2px solid #fff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1.1em;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
     }
-    button:hover {
-      background-color: #333;
+    .button:hover {
+      background-color: #666;
+      transform: scale(1.05);
     }
-    /* Section Styling */
+    .button:active {
+      background-color: #555;
+      transform: scale(1);
+    }
     section {
       padding: 64px 16px;
-      min-height: 100vh; /* Ensures each section fills at least one viewport height */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid #333;
     }
-    /* Spacer for smooth scrolling */
     .spacer {
       height: 80px;
     }
@@ -83,13 +99,15 @@
   <!-- Home Section -->
   <section>
     <h1>Pluto Executor</h1>
-    <p>The most powerful executor for Roblox met with all your needs!</p>
-    <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
-      <button>Download</button>
-    </a>
-    <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
-      <button>Join Discord</button>
-    </a>
+    <h2>The most powerful executor for Roblox, crafted to meet all your needs!</h2>
+    <div class="btn-container">
+      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
+        <div class="button">Download Now</div>
+      </a>
+      <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
+        <div class="button">Join Our Discord</div>
+      </a>
+    </div>
   </section>
 
   <!-- Spacer for scrolling -->
@@ -99,8 +117,8 @@
   <section>
     <h1>Pluto Executor Features</h1>
     <p>
-      This Roblox executor has many features. It has a UNC percentage of 72% and can take in all your needs for Roblox scripts.
-      Want to cheat on Arsenal? Now you can using this executor. Download now!
+      This Roblox executor has many features. It boasts a UNC percentage of 72% and supports all your Roblox scripting needs.
+      Whether you're playing Arsenal or another game, our executor is your gateway to enhanced gameplay. Download it today!
     </p>
   </section>
 
@@ -111,8 +129,7 @@
   <section>
     <h1>Pluto Executor Credits</h1>
     <p>
-      This was all made by ytz_solar (on Discord). If there are any problems, go to the Discord and open a ticket,
-      or contact ytz_solar for help if needed.
+      This project was developed by ytz_solar (Discord). For any issues, visit our Discord and open a ticket, or reach out to ytz_solar directly for assistance.
     </p>
   </section>
   
