@@ -142,8 +142,8 @@
     /* Sparkle Effect */
     .sparkle {
       position: absolute;
-      width: 5px; /* Size of each sparkle */
-      height: 5px;
+      width: 8px; /* Size of each sparkle */
+      height: 8px;
       background-color: #00509E; /* Color of the sparkle */
       border-radius: 50%; /* Circular shape */
       pointer-events: none; /* Prevents interference with mouse events */
@@ -217,28 +217,29 @@
     const sparkleContainer = document.getElementById('sparkleContainer');
 
     document.addEventListener('mousemove', (e) => {
-      createSparkle(e.pageX, e.pageY);
+      createSparkles(e.pageX, e.pageY);
     });
 
-    function createSparkle(x, y) {
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = `${x}px`;
-      sparkle.style.top = `${y}px`;
-      sparkle.style.opacity = 1; // Make it visible
-      sparkle.style.transform = `translate(-50%, -50%) scale(1)`; // Positioning and scaling
-      sparkleContainer.appendChild(sparkle);
+    function createSparkles(x, y) {
+      for (let i = 0; i < 3; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = `${x + (Math.random() - 0.5) * 15}px`; // Random position around cursor
+        sparkle.style.top = `${y + (Math.random() - 0.5) * 15}px`; // Random position around cursor
+        sparkle.style.opacity = 1; // Set opacity to 1
+        sparkleContainer.appendChild(sparkle);
 
-      // Remove the sparkle after a short time
-      setTimeout(() => {
-        sparkle.style.opacity = 0; // Fade out
-        sparkle.style.transform = `translate(-50%, -50%) scale(0.5)`; // Scale down
-      }, 100);
+        // Animate the sparkle
+        setTimeout(() => {
+          sparkle.style.opacity = 0; // Fade out
+          sparkle.style.transform = `scale(0.5)`; // Scale down
+        }, 100);
 
-      // Clean up the sparkle element after animation
-      sparkle.addEventListener('transitionend', () => {
-        sparkle.remove();
-      });
+        // Clean up the sparkle element after animation
+        sparkle.addEventListener('transitionend', () => {
+          sparkle.remove();
+        });
+      }
     }
   </script>
 </body>
