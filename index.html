@@ -190,6 +190,9 @@
       <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
         <div class="button">Join Our Discord</div>
       </a>
+      <a href="https://github.com/XxSolarXx/Nuke-tool" target="_blank" rel="noopener noreferrer">
+        <div class="button">Nuke Tool</div>
+      </a>
     </div>
     <p class="description">
       Welcome to Pluto Executor! We designed this tool to make your Roblox gaming experience even more exciting. With our executor, you can easily run scripts and customize your gameplay, giving you the freedom to explore everything Roblox has to offer.
@@ -224,31 +227,30 @@
     // Sparkle Effect
     const sparkleContainer = document.getElementById('sparkleContainer');
 
-    document.addEventListener('mousemove', (e) => {
-      createSparkles(e.pageX, e.pageY);
-    });
+    function createSparkle(x, y) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+      sparkle.style.opacity = 1;
 
-    function createSparkles(x, y) {
-      for (let i = 0; i < 2; i++) { // Create 2 sparkles per mouse movement
-        const sparkle = document.createElement('div');
-        sparkle.classList.add('sparkle');
-        sparkle.style.left = `${x + (Math.random() - 0.5) * 30}px`; // Random position around cursor
-        sparkle.style.top = `${y + (Math.random() - 0.5) * 30}px`; // Random position around cursor
-        sparkle.style.opacity = 1; // Set opacity to 1
-        sparkleContainer.appendChild(sparkle);
+      // Random movement and fading
+      setTimeout(() => {
+        sparkle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
+        sparkle.style.opacity = 0;
+      }, 100);
 
-        // Animate the sparkle
-        setTimeout(() => {
-          sparkle.style.opacity = 0; // Fade out
-          sparkle.style.transform = `scale(0.5)`; // Scale down
-        }, 100);
+      sparkleContainer.appendChild(sparkle);
 
-        // Clean up the sparkle element after animation
-        sparkle.addEventListener('transitionend', () => {
-          sparkle.remove();
-        });
-      }
+      // Remove the sparkle after the animation
+      sparkle.addEventListener('transitionend', () => {
+        sparkleContainer.removeChild(sparkle);
+      });
     }
+
+    document.addEventListener('mousemove', (e) => {
+      createSparkle(e.clientX, e.clientY);
+    });
   </script>
 </body>
 </html>
