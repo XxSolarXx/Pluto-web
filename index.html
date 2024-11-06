@@ -13,10 +13,20 @@
       font-family: 'Roboto', sans-serif;
       text-align: center;
       line-height: 1.6;
-      overflow-y: auto;
+      overflow-y: auto; /* Enable vertical scrolling */
       position: relative;
-      color: #FFFFFF;
-      background-color: #000000;
+      color: #FFFFFF; /* Set text color to white to contrast with the background */
+    }
+
+    /* Video as background */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Keep it behind other content */
     }
 
     header {
@@ -24,7 +34,7 @@
       justify-content: center;
       padding: 16px;
       gap: 20px;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.7); /* Slight transparency */
       position: fixed;
       top: 0;
       width: 100%;
@@ -32,14 +42,14 @@
     }
 
     a {
-      color: #007BFF;
+      color: #007BFF; /* Blue link color */
       text-decoration: none;
       padding: 10px 15px;
       border-radius: 4px;
       transition: background-color 0.3s, transform 0.2s;
     }
     a:hover {
-      background-color: #0056b3;
+      background-color: #0056b3; /* Darker blue on hover */
       color: #FFFFFF;
       transform: scale(1.05);
     }
@@ -49,8 +59,8 @@
       font-size: 4em;
       letter-spacing: 2px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      color: #00B0FF;
-      animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite;
+      color: #00B0FF; /* Lighter blue for better visibility */
+      animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite; /* Slower float animation */
     }
 
     .sub-title {
@@ -67,7 +77,7 @@
     }
 
     .button {
-      background-color: #007BFF;
+      background-color: #007BFF; /* Blue button color */
       color: #FFFFFF;
       border: none;
       padding: 12px 24px;
@@ -79,7 +89,7 @@
       animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
     .button:hover {
-      background-color: #0056b3;
+      background-color: #0056b3; /* Darker blue on hover */
       transform: scale(1.05);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
@@ -92,7 +102,7 @@
       align-items: center;
       justify-content: flex-start;
       border-bottom: 1px solid #333;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
     }
 
     .description {
@@ -111,13 +121,13 @@
 
     /* Monaco Editor container */
     #monaco-editor-container {
-      width: 550px; /* Smaller width for the Monaco editor */
-      height: 280px; /* Adjusted height */
+      width: 800px; /* Adjust width to match image */
+      height: 300px; /* Smaller height for the Monaco editor showcase */
       margin: 40px auto;
-      padding: 10px; /* Add padding around Monaco editor */
+      border: 2px solid #444;
       border-radius: 8px;
-      overflow: hidden;
-      background: url('image.png') no-repeat center/cover; /* Set image as background */
+      background-color: #2d2d2d;
+      text-align: left; /* Explicitly set text alignment to left for the container */
     }
 
     /* Keyframes for animations */
@@ -158,39 +168,51 @@
   <!-- Monaco Editor Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
+    // Configure require to load Monaco from the CDN
     window.require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' }}); 
     window.require(['vs/editor/editor.main'], function() {
+      // Define a custom black theme
       monaco.editor.defineTheme('blackTheme', {
         base: 'vs-dark',
         inherit: true,
         rules: [],
         colors: {
-          'editor.background': '#000000'
+          'editor.background': '#000000' // Set background to black
         }
       });
 
+      // Create editor with the custom theme
       monaco.editor.create(document.getElementById('monaco-editor-container'), {
         value: 'Join https://discord.gg/plutoexecutor\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
         language: 'python',
         theme: 'blackTheme',
-        lineNumbers: "on",
+        lineNumbers: "on",  // Enable line numbers on the left side
         minimap: { enabled: false },
-        fontSize: 12,
+        fontSize: 12, // Set smaller font size
         scrollBeyondLastLine: false,
-        wordWrap: 'on',
-        fontFamily: 'Courier New, monospace',
-        tabSize: 2,
-        indentSize: 2,
-        wrappingIndent: 'none',
-        cursorStyle: 'line',
-        wordWrapColumn: 80,
-        autoIndent: "full",
-        lineHeight: 22
+        wordWrap: 'on', // Enable word wrapping to ensure text stays to the left
+        fontFamily: 'Courier New, monospace', // Use monospace font for better code alignment
+        tabSize: 2, // Set tab size to 2 spaces
+        indentSize: 2, // Set indentation size to 2 spaces
+        wrappingIndent: 'none', // Prevent Monaco from centering the text
+        cursorStyle: 'line', // Set cursor style to a line for better visibility
+        wordWrapColumn: 80, // Set the word wrap column to control where the text wraps
+        autoIndent: "full", // Full indentation support for aligning code correctly
+        lineHeight: 22 // Adjust line height for better readability
       });
     });
   </script>
 </head>
 <body>
+
+  <!-- Background Video -->
+  <video class="background-video" autoplay loop muted>
+    <source src="pluto interface/dark-galaxy.960x540.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Sparkle Effects -->
+  <div id="sparkleContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
   <!-- Header with Navigation -->
   <header>
@@ -204,7 +226,11 @@
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
     <p class="sub-title">Your powerful executor for Roblox</p>
-    <p class="description">Pluto Executor lets you run scripts on Roblox with ease. It's fast, reliable, and easy to use. Download it now and join our Discord community for updates!</p>
+    <p class="description">Pluto Executor lets you run scripts on Roblox with ease. It's fast, reliable, and easy to use. Download it now to experience the power of Pluto!</p>
+
+    <!-- Monaco Editor Container -->
+    <div id="monaco-editor-container"></div>
+
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank">
         <div class="button">Download Pluto Executor</div>
@@ -214,9 +240,6 @@
       </a>
     </div>
   </section>
-
-  <!-- Monaco Editor Showcase with Image Background -->
-  <div id="monaco-editor-container"></div>
 
   <!-- Credits Section -->
   <section id="credits">
