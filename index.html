@@ -13,7 +13,7 @@
       font-family: 'Roboto', sans-serif;
       text-align: center;
       line-height: 1.6;
-      overflow: hidden;
+      overflow-y: auto; /* Enable vertical scrolling */
       position: relative;
       color: #FFFFFF; /* Set text color to white to contrast with the background */
     }
@@ -100,7 +100,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       border-bottom: 1px solid #333;
       background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
     }
@@ -221,6 +221,11 @@
     <h1 class="main-title">Pluto Executor</h1>
     <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
     
+    <!-- Text above the image and Monaco Editor -->
+    <div class="description">
+      <p>This is an example of how the text appears before the image and Monaco editor. Here you can include any text, and it will appear before the editor and image.</p>
+    </div>
+
     <!-- Showcase Image -->
     <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
 
@@ -228,10 +233,10 @@
     <div id="monaco-editor-container"></div>
 
     <div class="btn-container">
-      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
-        <div class="button">Download Now</div>
+      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank">
+        <div class="button">Download Pluto Executor</div>
       </a>
-      <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
+      <a href="https://discord.gg/plutoexecutor" target="_blank">
         <div class="button">Join Discord</div>
       </a>
     </div>
