@@ -77,7 +77,7 @@
     }
 
     .button {
-      background-color: #6200EE;
+      background-color: #007BFF; /* Blue button color */
       color: #FFFFFF;
       border: none;
       padding: 12px 24px;
@@ -89,7 +89,7 @@
       animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
     .button:hover {
-      background-color: #3700B3;
+      background-color: #0056b3; /* Darker blue on hover */
       transform: scale(1.05);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
@@ -117,15 +117,6 @@
       margin-top: 40px;
       font-size: 0.9em;
       color: #BBBBBB;
-    }
-
-    /* Showcase Image */
-    .showcase-image {
-      width: 80%;
-      max-width: 600px;
-      margin-top: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
     /* Monaco Editor container */
@@ -174,15 +165,30 @@
   </style>
 
   <!-- Monaco Editor Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.39.1/min/vs/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
-    require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.39.1/min/vs' }});
-    require(['vs/editor/editor.main'], function () {
-      monaco.editor.create(document.getElementById('monaco-editor-container'), {
-        value: "// Start typing your code here...",
-        language: 'javascript',
-        theme: 'vs-dark',
-        automaticLayout: true
+    // Configure require to load Monaco from the CDN
+    window.require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' }}); 
+    window.require(['vs/editor/editor.main'], function() {
+      // Define a custom black theme
+      monaco.editor.defineTheme('blackTheme', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [],
+        colors: {
+          'editor.background': '#000000' // Set background to black
+        }
+      });
+
+      // Create editor with the custom theme
+      monaco.editor.create(document.getElementById('container'), {
+        value: 'Join https://discord.gg/plutoexecutor\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
+        language: 'python',
+        theme: 'blackTheme',
+        lineNumbers: "on",  // Enable line numbers on the left side
+        minimap: { enabled: false },
+        fontSize: 12, // Set smaller font size
+        scrollBeyondLastLine: false
       });
     });
   </script>
@@ -234,8 +240,11 @@
     </div>
   </section>
 
-  <!-- Monaco Editor Container -->
-  <div id="monaco-editor-container"></div>
+  <!-- Monaco Editor Showcase Section -->
+  <section id="monaco-showcase">
+    <h2 style="color: #BB86FC; margin-bottom: 20px;">Monaco Editor Showcase</h2>
+    <div id="monaco-editor-container"></div>
+  </section>
 
 </body>
 </html>
