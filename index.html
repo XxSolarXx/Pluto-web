@@ -192,7 +192,10 @@
         wordWrap: 'on', // Enable word wrapping to ensure text stays to the left
         fontFamily: 'Courier New, monospace', // Use monospace font for better code alignment
         tabSize: 2, // Set tab size to 2 spaces
-        indentSize: 2 // Set indentation size to 2 spaces
+        indentSize: 2, // Set indentation size to 2 spaces
+        wrappingIndent: 'none', // Prevent Monaco from centering the text
+        cursorStyle: 'line', // Set cursor style to a line for better visibility
+        wordWrapColumn: 80, // Set the word wrap column to control where the text wraps
       });
     });
   </script>
@@ -223,13 +226,10 @@
     
     <!-- Text above the image and Monaco Editor -->
     <div class="description">
-      <p>This is an example of how the text appears before the image and Monaco editor. Here you can include any text, and it will appear before the editor and image.</p>
+      <p>This is an example of how the text appears before the image and Monaco editor. Here you can include any text, and it will appear on top.</p>
     </div>
 
-    <!-- Showcase Image -->
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <!-- Monaco Editor Showcase -->
+    <!-- Monaco Editor Container -->
     <div id="monaco-editor-container"></div>
 
     <div class="btn-container">
