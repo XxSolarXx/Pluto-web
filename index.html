@@ -42,15 +42,15 @@
     }
 
     a {
-      color: #BB86FC; /* Purple link color */
+      color: #007BFF; /* Blue link color */
       text-decoration: none;
       padding: 10px 15px;
       border-radius: 4px;
       transition: background-color 0.3s, transform 0.2s;
     }
     a:hover {
-      background-color: #BB86FC;
-      color: #000;
+      background-color: #0056b3; /* Darker blue on hover */
+      color: #FFFFFF;
       transform: scale(1.05);
     }
 
@@ -181,7 +181,7 @@
       });
 
       // Create editor with the custom theme
-      monaco.editor.create(document.getElementById('container'), {
+      monaco.editor.create(document.getElementById('monaco-editor-container'), {
         value: 'Join https://discord.gg/plutoexecutor\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
         language: 'python',
         theme: 'blackTheme',
@@ -220,6 +220,9 @@
     <!-- Showcase Image -->
     <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
 
+    <!-- Monaco Editor Showcase -->
+    <div id="monaco-editor-container"></div>
+
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
         <div class="button">Download Now</div>
@@ -236,14 +239,8 @@
     </p>
 
     <div class="credits">
-      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar</p>
+      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
     </div>
-  </section>
-
-  <!-- Monaco Editor Showcase Section -->
-  <section id="monaco-showcase">
-    <h2 style="color: #BB86FC; margin-bottom: 20px;">Monaco Editor Showcase</h2>
-    <div id="monaco-editor-container"></div>
   </section>
 
 </body>
