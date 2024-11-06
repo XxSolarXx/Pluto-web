@@ -13,9 +13,9 @@
       font-family: 'Roboto', sans-serif;
       text-align: center;
       line-height: 1.6;
-      overflow-y: auto; /* Enable vertical scrolling */
+      overflow-y: auto;
       position: relative;
-      color: #FFFFFF; /* Set text color to white to contrast with the background */
+      color: #FFFFFF;
       background-color: #000000;
     }
 
@@ -24,7 +24,7 @@
       justify-content: center;
       padding: 16px;
       gap: 20px;
-      background-color: rgba(0, 0, 0, 0.7); /* Slight transparency */
+      background-color: rgba(0, 0, 0, 0.7);
       position: fixed;
       top: 0;
       width: 100%;
@@ -32,14 +32,14 @@
     }
 
     a {
-      color: #007BFF; /* Blue link color */
+      color: #007BFF;
       text-decoration: none;
       padding: 10px 15px;
       border-radius: 4px;
       transition: background-color 0.3s, transform 0.2s;
     }
     a:hover {
-      background-color: #0056b3; /* Darker blue on hover */
+      background-color: #0056b3;
       color: #FFFFFF;
       transform: scale(1.05);
     }
@@ -49,8 +49,8 @@
       font-size: 4em;
       letter-spacing: 2px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      color: #00B0FF; /* Lighter blue for better visibility */
-      animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite; /* Slower float animation */
+      color: #00B0FF;
+      animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite;
     }
 
     .sub-title {
@@ -67,7 +67,7 @@
     }
 
     .button {
-      background-color: #007BFF; /* Blue button color */
+      background-color: #007BFF;
       color: #FFFFFF;
       border: none;
       padding: 12px 24px;
@@ -79,7 +79,7 @@
       animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
     .button:hover {
-      background-color: #0056b3; /* Darker blue on hover */
+      background-color: #0056b3;
       transform: scale(1.05);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
@@ -92,7 +92,7 @@
       align-items: center;
       justify-content: flex-start;
       border-bottom: 1px solid #333;
-      background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
+      background-color: rgba(0, 0, 0, 0.8);
     }
 
     .description {
@@ -111,13 +111,13 @@
 
     /* Monaco Editor container */
     #monaco-editor-container {
-      width: 600px; /* Smaller width for the Monaco editor */
-      height: 300px; /* Smaller height for the Monaco editor showcase */
+      width: 550px; /* Smaller width for the Monaco editor */
+      height: 280px; /* Adjusted height */
       margin: 40px auto;
-      border: 2px solid #444;
+      padding: 10px; /* Add padding around Monaco editor */
       border-radius: 8px;
-      background-color: #2d2d2d;
-      text-align: left; /* Explicitly set text alignment to left for the container */
+      overflow: hidden;
+      background: url('image.png') no-repeat center/cover; /* Set image as background */
     }
 
     /* Keyframes for animations */
@@ -158,37 +158,34 @@
   <!-- Monaco Editor Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
-    // Configure require to load Monaco from the CDN
     window.require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' }}); 
     window.require(['vs/editor/editor.main'], function() {
-      // Define a custom black theme
       monaco.editor.defineTheme('blackTheme', {
         base: 'vs-dark',
         inherit: true,
         rules: [],
         colors: {
-          'editor.background': '#000000' // Set background to black
+          'editor.background': '#000000'
         }
       });
 
-      // Create editor with the custom theme
       monaco.editor.create(document.getElementById('monaco-editor-container'), {
         value: 'Join https://discord.gg/plutoexecutor\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
         language: 'python',
         theme: 'blackTheme',
-        lineNumbers: "on",  // Enable line numbers on the left side
+        lineNumbers: "on",
         minimap: { enabled: false },
-        fontSize: 12, // Set smaller font size
+        fontSize: 12,
         scrollBeyondLastLine: false,
-        wordWrap: 'on', // Enable word wrapping to ensure text stays to the left
-        fontFamily: 'Courier New, monospace', // Use monospace font for better code alignment
-        tabSize: 2, // Set tab size to 2 spaces
-        indentSize: 2, // Set indentation size to 2 spaces
-        wrappingIndent: 'none', // Prevent Monaco from centering the text
-        cursorStyle: 'line', // Set cursor style to a line for better visibility
-        wordWrapColumn: 80, // Set the word wrap column to control where the text wraps
-        autoIndent: "full", // Full indentation support for aligning code correctly
-        lineHeight: 22 // Adjust line height for better readability
+        wordWrap: 'on',
+        fontFamily: 'Courier New, monospace',
+        tabSize: 2,
+        indentSize: 2,
+        wrappingIndent: 'none',
+        cursorStyle: 'line',
+        wordWrapColumn: 80,
+        autoIndent: "full",
+        lineHeight: 22
       });
     });
   </script>
@@ -219,7 +216,7 @@
   </section>
 
   <!-- Monaco Editor Showcase with Image Background -->
-  <div id="monaco-editor-container" style="background-image: url('image.png'); background-size: cover; background-position: center;"></div>
+  <div id="monaco-editor-container"></div>
 
   <!-- Credits Section -->
   <section id="credits">
