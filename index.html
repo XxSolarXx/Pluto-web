@@ -15,6 +15,7 @@
       line-height: 1.6;
       overflow: hidden;
       position: relative;
+      color: #FFFFFF; /* Set text color to white to contrast with the background */
     }
     
     /* Video as background */
@@ -25,7 +26,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -1; /* To keep it behind other content */
+      z-index: -1; /* Keep it behind other content */
     }
 
     header {
@@ -58,7 +59,7 @@
       font-size: 4em;
       letter-spacing: 2px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      color: #00509E; /* Lighter blue for better visibility */
+      color: #00B0FF; /* Lighter blue for better visibility */
       animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite; /* Slower float animation */
     }
 
@@ -101,7 +102,7 @@
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid #333;
-      background-color: rgba(0, 0, 0, 0.8); /* Slight transparency for the section */
+      background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
     }
 
     .description {
@@ -116,6 +117,15 @@
       margin-top: 40px;
       font-size: 0.9em;
       color: #BBBBBB;
+    }
+
+    /* Showcase Image */
+    .showcase-image {
+      width: 80%;
+      max-width: 600px;
+      margin-top: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
     /* Keyframes for animations */
@@ -139,15 +149,30 @@
         opacity: 1;
       }
     }
+
+    /* Sparkle Effect */
+    .sparkle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #00509E;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+    }
   </style>
 </head>
 <body>
 
   <!-- Background Video -->
   <video class="background-video" autoplay loop muted>
-    <source src="pluto interference/dark-galaxy.960x540.mp4" type="video/mp4">
+    <source src="pluto interface/dark-galaxy.960x540.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+
+  <!-- Sparkle Effects -->
+  <div id="sparkleContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
   <!-- Header with Navigation -->
   <header>
@@ -161,6 +186,10 @@
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
     <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
+    
+    <!-- Showcase Image -->
+    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
+
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
         <div class="button">Download Now</div>
@@ -175,16 +204,10 @@
     <p class="description">
       Welcome to Pluto Executor! We designed this tool to make your Roblox gaming experience even more exciting. With our executor, you can easily run scripts and customize your gameplay, giving you the freedom to explore everything Roblox has to offer.
     </p>
-  </section>
 
-  <!-- Monaco Editor Showcase -->
-  <section id="monaco-showcase">
-    <h2>Monaco Editor Showcase</h2>
-    <iframe src="https://monaco-ashy.vercel.app/" width="100%" height="600px" frameborder="0"></iframe>
+    <div class="credits">
+      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar</p>
+    </div>
   </section>
-
-  <div class="credits">
-    <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar</p>
-  </div>
 </body>
 </html>
