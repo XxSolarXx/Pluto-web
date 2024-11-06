@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pluto Executor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      line-height: 1.6;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Video as background */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* To keep it behind other content */
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+      gap: 20px;
+      background-color: rgba(0, 0, 0, 0.7); /* Slight transparency */
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+    }
+
+    a {
+      color: #BB86FC; /* Purple link color */
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    a:hover {
+      background-color: #BB86FC;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* Title Styling */
+    .main-title {
+      font-size: 4em;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #00509E; /* Lighter blue for better visibility */
+      animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite; /* Slower float animation */
+    }
+
+    .sub-title {
+      font-size: 1.5em;
+      color: #FFFFFF;
+      margin-bottom: 40px;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .button {
+      background-color: #6200EE;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
+    }
+
+    .button:hover {
+      background-color: #3700B3;
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    section {
+      padding: 60px 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #333;
+      background-color: rgba(0, 0, 0, 0.8); /* Slight transparency for the section */
+    }
+
+    .description {
+      margin-top: 30px;
+      max-width: 800px;
+      font-size: 1.1em;
+      color: #FFFFFF;
+      padding: 0 20px;
+    }
+
+    .credits {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #BBBBBB;
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Sparkle Effect */
+    .sparkle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #00509E;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video class="background-video" autoplay loop muted>
+    <source src="pluto interface/dark-galaxy.960x540.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Sparkle Effects -->
+  <div id="sparkleContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+  <!-- Header with Navigation -->
+  <header>
+    <a href="#home">Home</a>
+    <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">Download</a>
+    <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="#credits">Credits</a>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h1 class="main-title">Pluto Executor</h1>
+    <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
+    <div class="btn-container">
+      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
+        <div class="button">Download Now</div>
+      </a>
+      <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">
+        <div class="button">Join Our Discord</div>
+      </a>
+      <a href="https://github.com/XxSolarXx/Nuke-tool" target="_blank" rel="noopener noreferrer">
+        <div class="button">Nuke Tool</div>
+      </a>
+    </div>
+    <p class="description">
+      Welcome to Pluto Executor! We designed this tool to make your Roblox gaming experience even more exciting. With our executor, you can easily run scripts and customize your gameplay, giving you the freedom to explore everything Roblox has to offer.
+    </p>
+
+    <div class="credits">
+      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar</p>
+    </div>
+  </section>
+</body>
+</html>
