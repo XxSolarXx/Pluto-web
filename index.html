@@ -16,6 +16,7 @@
       overflow-y: auto;
       position: relative;
       color: #FFFFFF;
+      cursor: pointer;
     }
 
     /* Video as background */
@@ -55,7 +56,7 @@
     }
 
     .main-title {
-      font-size: 4em;
+      font-size: 3.5em;
       letter-spacing: 2px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       color: #00B0FF;
@@ -63,7 +64,7 @@
     }
 
     .sub-title {
-      font-size: 1.5em;
+      font-size: 1.2em;
       color: #FFFFFF;
       margin-bottom: 40px;
     }
@@ -81,7 +82,7 @@
       border: none;
       padding: 12px 24px;
       border-radius: 6px;
-      font-size: 1.2em;
+      font-size: 1.1em;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
@@ -107,7 +108,7 @@
     .description {
       margin-top: 30px;
       max-width: 800px;
-      font-size: 1.1em;
+      font-size: 1em;
       color: #FFFFFF;
       padding: 0 20px;
     }
@@ -145,6 +146,31 @@
       margin-bottom: 20px;
     }
 
+    /* Firework Animation */
+    .firework {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.6), rgba(255, 255, 0, 0.7), rgba(0, 255, 255, 0.8));
+      border-radius: 50%;
+      animation: explode 1.2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(3);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(10);
+        opacity: 0;
+      }
+    }
   </style>
 
   <!-- Monaco Editor Scripts -->
@@ -180,6 +206,18 @@
         lineHeight: 22
       });
     });
+
+    // Firework effect on click
+    document.body.addEventListener('click', function(e) {
+      var firework = document.createElement('div');
+      firework.classList.add('firework');
+      firework.style.left = `${e.pageX - 25}px`;
+      firework.style.top = `${e.pageY - 25}px`;
+      document.body.appendChild(firework);
+      setTimeout(function() {
+        firework.remove();
+      }, 1200);
+    });
   </script>
 </head>
 <body>
@@ -214,16 +252,15 @@
 
     <!-- Download & Discord Links -->
     <div class="btn-container">
-      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" class="button">Download Pluto Executor</a>
-      <a href="https://discord.gg/plutoexecutor" target="_blank" class="button">Join our Discord</a>
+      <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" class="button">Download Pluto</a>
+      <a href="https://discord.gg/plutoexecutor" target="_blank" class="button">Join Discord</a>
     </div>
   </section>
 
   <!-- Credits Section -->
   <section id="credits">
-    <h2 class="section-title">Credits</h2>
+    <div class="section-title">Credits</div>
     <p class="credits">This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
   </section>
-
 </body>
 </html>
