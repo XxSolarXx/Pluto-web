@@ -16,6 +16,7 @@
       overflow-y: auto;
       position: relative;
       color: #FFFFFF;
+      background-color: #121212;
     }
 
     /* Video as background */
@@ -128,13 +129,19 @@
       text-align: left;
     }
 
-    /* Showcase Image */
     .showcase-image {
       width: 80%;
       max-width: 800px;
       margin: 20px 0;
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .section-title {
+      font-size: 2em;
+      color: #FF8C00;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
     }
   </style>
 
@@ -195,11 +202,13 @@
     <p class="sub-title">Your powerful executor for Roblox</p>
     <p class="description">Pluto Executor lets you run scripts on Roblox with ease. It's fast, reliable, and easy to use. Download it now to experience the power of Pluto!</p>
 
-    <!-- Monaco Editor Container -->
+    <!-- Monaco Editor Showcase -->
+    <div class="section-title">Monaco Editor Showcase</div>
     <div id="monaco-editor-container"></div>
 
     <!-- Application Showcase Image -->
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
+    <div class="section-title">Pluto Executor Showcase</div>
+    <img src="image.png" alt="Pluto Executor Showcase" class="showcase-image">
 
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank">
