@@ -8,23 +8,36 @@
   <style>
     /* Global Styles */
     body {
-      background-color: #000000; /* Black background */
+      background: url('https://www.w3schools.com/w3images/galaxy.jpg') no-repeat center center fixed; /* Galaxy Background */
+      background-size: cover;
       color: #FFFFFF; /* White text for readability */
       font-family: 'Roboto', sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
       line-height: 1.6;
-      position: relative; /* Required for absolute positioning of sparkles */
+      position: relative;
+      overflow: hidden;
+      animation: backgroundAnimation 60s infinite linear; /* Animated Background */
     }
+    
+    @keyframes backgroundAnimation {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
+
     header {
       display: flex;
       justify-content: center;
       padding: 16px;
       gap: 20px;
-      border-bottom: 1px solid #333;
-      background-color: #000000; /* Ensure header is also black */
+      background-color: rgba(0, 0, 0, 0.7); /* Slight transparency */
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
     }
+
     a {
       color: #BB86FC; /* Purple link color */
       text-decoration: none;
@@ -37,14 +50,8 @@
       color: #000;
       transform: scale(1.05);
     }
+
     /* Title Styling */
-    .main-title-container {
-      display: inline-block; /* To fit the border around the title */
-      border: 1px solid #FFFFFF; /* Smaller monochrome border color */
-      padding: 1px; /* Further reduced padding inside the border */
-      border-radius: 4px; /* Slightly rounded corners */
-      margin-bottom: 20px; /* Space below the title */
-    }
     .main-title {
       font-size: 4em;
       letter-spacing: 2px;
@@ -52,17 +59,20 @@
       color: #00509E; /* Lighter blue for better visibility */
       animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite; /* Slower float animation */
     }
+
     .sub-title {
       font-size: 1.5em;
-      color: #FFFFFF; /* Monochrome subtitle */
+      color: #FFFFFF;
       margin-bottom: 40px;
     }
+
     .btn-container {
       display: flex;
       gap: 30px;
       justify-content: center;
       margin-top: 24px;
     }
+
     .button {
       background-color: #6200EE;
       color: #FFFFFF;
@@ -72,14 +82,15 @@
       font-size: 1.2em;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Added box-shadow transition */
-      animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite; /* Slower float animation */
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
     .button:hover {
       background-color: #3700B3;
       transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Adding shadow on hover */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
+
     section {
       padding: 60px 16px;
       min-height: 100vh;
@@ -88,50 +99,32 @@
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid #333;
-      background-color: #000000; /* Ensure sections are also black */
+      background-color: rgba(0, 0, 0, 0.8); /* Slight transparency for the section */
     }
-    .spacer {
-      height: 80px;
-    }
-    /* Additional styling for the description text */
+
     .description {
-      margin-top: 30px; /* Adjusted margin to move the text lower */
+      margin-top: 30px;
       max-width: 800px;
-      font-size: 1.1em; /* Slightly larger text for better readability */
-      color: #FFFFFF; /* White for better contrast */
+      font-size: 1.1em;
+      color: #FFFFFF;
       padding: 0 20px;
     }
-    ul {
-      text-align: left;
-      margin: 20px auto;
-      max-width: 600px;
-      list-style-type: disc;
-      padding-left: 20px;
-      color: #FFFFFF; /* White for better readability */
-    }
-    /* Credits Section */
+
     .credits {
-      margin-top: 40px; /* Space above credits */
-      font-size: 0.9em; /* Smaller font size */
-      color: #BBBBBB; /* Light gray for visibility without drawing too much attention */
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #BBBBBB;
     }
+
     /* Keyframes for animations */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px); /* Move up by 10 pixels */
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     @keyframes slideIn {
@@ -148,14 +141,13 @@
     /* Sparkle Effect */
     .sparkle {
       position: absolute;
-      width: 15px; /* Increased size of each sparkle */
+      width: 15px;
       height: 15px;
-      background-color: #00509E; /* Color of the sparkle */
-      border-radius: 50%; /* Circular shape */
-      pointer-events: none; /* Prevents interference with mouse events */
-      opacity: 0; /* Start invisible */
-      transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition */
-      will-change: transform, opacity; /* Hint for performance */
+      background-color: #00509E;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
     }
   </style>
 </head>
@@ -173,15 +165,10 @@
     <a href="#credits">Credits</a>
   </header>
 
-  <!-- Spacer for scrolling -->
-  <div class="spacer" id="home"></div>
-
   <!-- Home Section -->
-  <section>
-    <div class="main-title-container">
-      <h1 class="main-title">Pluto Executor</h1>
-    </div>
-    <img src="image.png" alt="Pluto Executor Image" style="max-width: 100%; height: auto; margin-bottom: 20px;"/>
+  <section id="home">
+    <h1 class="main-title">Pluto Executor</h1>
+    <img src="image.png" alt="Pluto Executor Image" style="max-width: 80%; height: auto; margin-bottom: 20px;"/>
     <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
@@ -198,18 +185,14 @@
       Welcome to Pluto Executor! We designed this tool to make your Roblox gaming experience even more exciting. With our executor, you can easily run scripts and customize your gameplay, giving you the freedom to explore everything Roblox has to offer.
     </p>
 
-    <!-- Integrated Credits Section -->
     <div class="credits">
       <p>This tool was developed by Solar. Thank you for your support!</p>
       <p>Find us on <a href="https://discord.gg/plutoexecutor" style="color: #BB86FC;">Discord</a> for more updates!</p>
     </div>
   </section>
 
-  <!-- Spacer for scrolling -->
-  <div class="spacer" id="features"></div>
-
   <!-- Features Section -->
-  <section>
+  <section id="features">
     <h1 class="section-title" style="color: #FFFFFF;">What Makes Pluto Executor Stand Out?</h1>
     <p class="description">
       Pluto Executor offers a range of features that set it apart from the competition:
@@ -234,15 +217,12 @@
       sparkle.style.top = `${y}px`;
       sparkle.style.opacity = 1;
 
-      // Random movement and fading
       setTimeout(() => {
         sparkle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
         sparkle.style.opacity = 0;
       }, 100);
 
       sparkleContainer.appendChild(sparkle);
-
-      // Remove the sparkle after the animation
       sparkle.addEventListener('transitionend', () => {
         sparkleContainer.removeChild(sparkle);
       });
@@ -252,5 +232,6 @@
       createSparkle(e.clientX, e.clientY);
     });
   </script>
+
 </body>
 </html>
