@@ -159,7 +159,6 @@
   <!-- Header with Navigation -->
   <header>
     <a href="#home">Home</a>
-    <a href="#features">Features</a>
     <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">Download</a>
     <a href="https://discord.gg/plutoexecutor" target="_blank" rel="noopener noreferrer">Discord</a>
     <a href="#credits">Credits</a>
@@ -168,7 +167,7 @@
   <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
-    <img src="image.png" alt="Pluto Executor Image" style="max-width: 80%; height: auto; margin-bottom: 20px;"/>
+    <img src="your-image-path.jpg" alt="Pluto Executor Image" style="max-width: 80%; height: auto; margin-top: 40px; margin-bottom: 20px;"/>
     <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
@@ -186,50 +185,19 @@
     </p>
 
     <div class="credits">
-      <p>This tool was developed by Solar. Thank you for your support!</p>
-      <p>Find us on <a href="https://discord.gg/plutoexecutor" style="color: #BB86FC;">Discord</a> for more updates!</p>
+      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section id="features">
-    <h1 class="section-title" style="color: #FFFFFF;">What Makes Pluto Executor Stand Out?</h1>
-    <p class="description">
-      Pluto Executor offers a range of features that set it apart from the competition:
-    </p>
-    <ul>
-      <li>Easy-to-use interface</li>
-      <li>Powerful script execution</li>
-      <li>Frequent updates and improvements</li>
-      <li>Active community support</li>
-      <li>Robust security measures</li>
-    </ul>
-  </section>
-
   <script>
-    // Sparkle Effect
-    const sparkleContainer = document.getElementById('sparkleContainer');
-
-    function createSparkle(x, y) {
+    // Sparkle Effect on Mouse Move
+    document.addEventListener('mousemove', function (e) {
       const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.style.left = `${x}px`;
-      sparkle.style.top = `${y}px`;
-      sparkle.style.opacity = 1;
-
-      setTimeout(() => {
-        sparkle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
-        sparkle.style.opacity = 0;
-      }, 100);
-
-      sparkleContainer.appendChild(sparkle);
-      sparkle.addEventListener('transitionend', () => {
-        sparkleContainer.removeChild(sparkle);
-      });
-    }
-
-    document.addEventListener('mousemove', (e) => {
-      createSparkle(e.clientX, e.clientY);
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = `${e.clientX}px`;
+      sparkle.style.top = `${e.clientY}px`;
+      document.getElementById('sparkleContainer').appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1000);
     });
   </script>
 
