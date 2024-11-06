@@ -8,22 +8,24 @@
   <style>
     /* Global Styles */
     body {
-      background: url('https://www.w3schools.com/w3images/galaxy.jpg') no-repeat center center fixed; /* Galaxy Background */
-      background-size: cover;
-      color: #FFFFFF; /* White text for readability */
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
       line-height: 1.6;
-      position: relative;
       overflow: hidden;
-      animation: backgroundAnimation 60s infinite linear; /* Animated Background */
+      position: relative;
     }
     
-    @keyframes backgroundAnimation {
-      0% { background-position: 0 0; }
-      100% { background-position: 100% 100%; }
+    /* Video as background */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* To keep it behind other content */
     }
 
     header {
@@ -153,6 +155,12 @@
 </head>
 <body>
 
+  <!-- Background Video -->
+  <video class="background-video" autoplay loop muted>
+    <source src="pluto interference/dark-galaxy.960x540.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
   <!-- Sparkle Effects -->
   <div id="sparkleContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
@@ -167,7 +175,6 @@
   <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
-    <img src="your-image-path.jpg" alt="Pluto Executor Image" style="max-width: 80%; height: auto; margin-top: 40px; margin-bottom: 20px;"/>
     <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
     <div class="btn-container">
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">
@@ -185,21 +192,8 @@
     </p>
 
     <div class="credits">
-      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
+      <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar</p>
     </div>
   </section>
-
-  <script>
-    // Sparkle Effect on Mouse Move
-    document.addEventListener('mousemove', function (e) {
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = `${e.clientX}px`;
-      sparkle.style.top = `${e.clientY}px`;
-      document.getElementById('sparkleContainer').appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 1000);
-    });
-  </script>
-
 </body>
 </html>
