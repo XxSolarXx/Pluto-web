@@ -17,7 +17,7 @@
       position: relative;
       color: #FFFFFF; /* Set text color to white to contrast with the background */
     }
-    
+
     /* Video as background */
     .background-video {
       position: fixed;
@@ -127,6 +127,7 @@
       border: 2px solid #444;
       border-radius: 8px;
       background-color: #2d2d2d;
+      text-align: left; /* Explicitly set text alignment to left for the container */
     }
 
     /* Keyframes for animations */
@@ -196,6 +197,8 @@
         wrappingIndent: 'none', // Prevent Monaco from centering the text
         cursorStyle: 'line', // Set cursor style to a line for better visibility
         wordWrapColumn: 80, // Set the word wrap column to control where the text wraps
+        autoIndent: "full", // Full indentation support for aligning code correctly
+        lineHeight: 22 // Adjust line height for better readability
       });
     });
   </script>
@@ -222,12 +225,8 @@
   <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
-    <h2 class="sub-title">The most powerful executor for Roblox, crafted to meet all your needs!</h2>
-    
-    <!-- Text above the image and Monaco Editor -->
-    <div class="description">
-      <p>This is an example of how the text appears before the image and Monaco editor. Here you can include any text, and it will appear on top.</p>
-    </div>
+    <p class="sub-title">Your powerful executor for Roblox</p>
+    <p class="description">Pluto Executor lets you run scripts on Roblox with ease. It's fast, reliable, and easy to use. Download it now to experience the power of Pluto!</p>
 
     <!-- Monaco Editor Container -->
     <div id="monaco-editor-container"></div>
