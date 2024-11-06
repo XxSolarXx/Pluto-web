@@ -17,6 +17,7 @@
       position: relative;
       color: #FFFFFF;
       cursor: pointer;
+      user-select: none;
     }
 
     /* Video as background */
@@ -151,28 +152,22 @@
       margin-bottom: 20px;
     }
 
-    /* Firework Animation */
-    .firework {
+    /* Ripple Effect */
+    .ripple {
       position: absolute;
-      width: 50px;
-      height: 50px;
-      background: radial-gradient(circle, rgba(255, 0, 0, 0.6), rgba(255, 255, 0, 0.7), rgba(0, 255, 255, 0.8));
       border-radius: 50%;
-      animation: explode 1.2s ease-out forwards;
+      background: rgba(255, 255, 255, 0.5);
+      animation: ripple-animation 0.6s linear;
       pointer-events: none;
     }
 
-    @keyframes explode {
+    @keyframes ripple-animation {
       0% {
         transform: scale(0);
         opacity: 1;
       }
-      50% {
-        transform: scale(3);
-        opacity: 0.5;
-      }
       100% {
-        transform: scale(10);
+        transform: scale(5);
         opacity: 0;
       }
     }
@@ -212,16 +207,23 @@
       });
     });
 
-    // Firework effect on click
+    // Ripple effect on click
     document.body.addEventListener('click', function(e) {
-      var firework = document.createElement('div');
-      firework.classList.add('firework');
-      firework.style.left = `${e.pageX - 25}px`;
-      firework.style.top = `${e.pageY - 25}px`;
-      document.body.appendChild(firework);
+      var ripple = document.createElement('div');
+      ripple.classList.add('ripple');
+      document.body.appendChild(ripple);
+
+      var size = Math.max(window.innerWidth, window.innerHeight);
+      var x = e.pageX - size / 2;
+      var y = e.pageY - size / 2;
+
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+
       setTimeout(function() {
-        firework.remove();
-      }, 1200);
+        ripple.remove();
+      }, 600);
     });
   </script>
 </head>
