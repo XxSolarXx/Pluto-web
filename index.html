@@ -189,9 +189,18 @@
         }
       });
 
+      // Create Monaco editor with the showcase URL as content (for demo purposes)
       monaco.editor.create(document.getElementById('monaco-editor-container'), {
-        value: 'Join https://discord.gg/getpluto\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
-        language: 'python',
+        value: `
+          // This is a showcase of the Monaco Editor with the URL:
+          // https://monaco-rdr9.vercel.app/
+
+          // URL: https://monaco-rdr9.vercel.app/
+          console.log("Welcome to the Monaco Editor! Explore the URL showcased above.");
+          
+          // You can add any code or text below to explore further.
+        `,
+        language: 'javascript',
         theme: 'blackTheme',
         lineNumbers: "on",
         minimap: { enabled: false },
@@ -219,9 +228,9 @@
       var x = e.pageX - size / 2;
       var y = e.pageY - size / 2;
 
-      ripple.style.width = ripple.style.height = ${size}px;
-      ripple.style.left = ${x}px;
-      ripple.style.top = ${y}px;
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
 
       setTimeout(function() {
         ripple.remove();
@@ -248,34 +257,27 @@
   <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">Experience a 84% UNC Execution, it executes effectively and allows you to unlock a new world of cheats in your Roblox games. You can join our server for support or use our scripts we have for you to test. Download Now and experience this all!</p>
-    <p class="description">Join our community for support, updates, and more!</p>
+    <p class="sub-title">Experience a 84% UNC Execution, it executes effectively and allows you to unlock a new world of cheats in your favorite games.</p>
+    <div class="btn-container">
+      <button class="button">Download</button>
+      <button class="button">Start Now</button>
+    </div>
+  </section>
 
-    <!-- Monaco Editor Showcase -->
+  <!-- Monaco Showcase Section -->
+  <section id="showcase">
     <div class="section-title">Monaco Editor Showcase</div>
     <div id="monaco-editor-container"></div>
-
-    <!-- Application Showcase Image -->
-    <div class="section-title">Pluto Executor Showcase</div>
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <!-- Button Section -->
-    <div class="btn-container">
-      <!-- Discord Button -->
-      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-
-      <!-- Nuke Tool Button -->
-      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
-
-      <!-- Pluto Executor Button -->
-      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Go to Pluto Executor</a>
-    </div>
+    <img class="showcase-image" src="https://monaco-rdr9.vercel.app/screenshot.jpg" alt="Monaco Editor Showcase Image">
+    <p class="description">
+      Explore how Monaco Editor integrates and displays content from external URLs. This showcase demonstrates loading content from:
+      <a href="https://monaco-rdr9.vercel.app/" target="_blank">https://monaco-rdr9.vercel.app/</a>.
+    </p>
   </section>
 
   <!-- Credits Section -->
   <section id="credits">
-    <h2 class="section-title">Credits</h2>
-    <p class="credits">This interface was made by Solar (@ytz_solar).</p>
+    <p class="credits">This was made by Solar. Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
   </section>
 
 </body>
