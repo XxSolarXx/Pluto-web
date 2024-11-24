@@ -21,19 +21,6 @@
       background-color: #000;
     }
 
-    /* View Count Style */
-    .view-count {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 1.2em;
-      color: #00B0FF;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 15px;
-      border-radius: 5px;
-      z-index: 100;
-    }
-
     /* Video as background */
     .background-video {
       position: fixed;
@@ -240,24 +227,9 @@
         ripple.remove();
       }, 600);
     });
-
-    // View count script
-    if (localStorage.getItem('views') === null) {
-      localStorage.setItem('views', 1);
-    } else {
-      localStorage.setItem('views', parseInt(localStorage.getItem('views')) + 1);
-    }
-
-    // Display view count
-    window.onload = function() {
-      document.getElementById('view-count').innerText = 'Views: ' + localStorage.getItem('views');
-    };
   </script>
 </head>
 <body>
-
-  <!-- View Count -->
-  <div id="view-count" class="view-count">Views: 0</div>
 
   <!-- Background Video -->
   <video class="background-video" autoplay loop muted>
@@ -268,32 +240,43 @@
   <!-- Header with Navigation -->
   <header>
     <a href="#home">Home</a>
-    <a href="https://github.com/ytzsolar/Pluto-Executor">Github</a>
-    <a href="#about">About</a>
+    <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">Download</a>
+    <a href="https://discord.gg/getpluto" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="#credits">Credits</a>
   </header>
 
-  <!-- Main Content -->
-  <section>
+  <!-- Home Section -->
+  <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">The best executor for Roblox!</p>
+    <p class="sub-title">Experience a 84% UNC Execution, it executes effectively and allows you to unlock a new world of cheats in your Roblox games. You can join our server for support or use our scripts we have for you to test. Download Now and experience this all!</p>
+    <p class="description">Join our community for support, updates, and more!</p>
 
+    <!-- Monaco Editor Showcase -->
+    <div class="section-title">Monaco Editor Showcase</div>
+    <div id="monaco-editor-container"></div>
+
+    <!-- Application Showcase Image -->
+    <div class="section-title">Pluto Executor Showcase</div>
+    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
+
+    <!-- Button Section -->
     <div class="btn-container">
-      <button class="button">Download Pluto</button>
-      <button class="button">Join Discord</button>
-    </div>
+      <!-- Discord Button -->
+      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
 
-    <div class="description">
-      <p>Pluto Executor allows you to execute your own scripts and hack Roblox games, making it easier for you to take control!</p>
+      <!-- Nuke Tool Button -->
+      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
+
+      <!-- Pluto Executor Button -->
+      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Go to Pluto Executor</a>
     </div>
   </section>
 
-  <!-- Monaco Editor -->
-  <div id="monaco-editor-container"></div>
-
-  <!-- Credits -->
-  <footer class="credits">
-    <p>Made by Solar. Discord: ytz_solar | Roblox: YTZ_Solar</p>
-  </footer>
+  <!-- Credits Section -->
+  <section id="credits">
+    <h2 class="section-title">Credits</h2>
+    <p class="credits">This interface was made by Solar (@ytz_solar).</p>
+  </section>
 
 </body>
 </html>
