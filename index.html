@@ -189,24 +189,33 @@
         }
       });
 
-      monaco.editor.create(document.getElementById('monaco-editor-container'), {
-        value: 'Join https://discord.gg/getpluto\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
-        language: 'python',
-        theme: 'blackTheme',
-        lineNumbers: "on",
-        minimap: { enabled: false },
-        fontSize: 12,
-        scrollBeyondLastLine: false,
-        wordWrap: 'on',
-        fontFamily: 'Courier New, monospace',
-        tabSize: 2,
-        indentSize: 2,
-        wrappingIndent: 'none',
-        cursorStyle: 'line',
-        wordWrapColumn: 80,
-        autoIndent: "full",
-        lineHeight: 22
-      });
+      // Fetch content from the URL
+      fetch('https://monaco-rdr9.vercel.app/')
+        .then(response => response.text())
+        .then(data => {
+          // Set the content of Monaco Editor to the fetched URL content
+          monaco.editor.create(document.getElementById('monaco-editor-container'), {
+            value: data,
+            language: 'html',
+            theme: 'blackTheme',
+            lineNumbers: "on",
+            minimap: { enabled: false },
+            fontSize: 12,
+            scrollBeyondLastLine: false,
+            wordWrap: 'on',
+            fontFamily: 'Courier New, monospace',
+            tabSize: 2,
+            indentSize: 2,
+            wrappingIndent: 'none',
+            cursorStyle: 'line',
+            wordWrapColumn: 80,
+            autoIndent: "full",
+            lineHeight: 22
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching URL:', error);
+        });
     });
 
     // Ripple effect on click
@@ -219,9 +228,9 @@
       var x = e.pageX - size / 2;
       var y = e.pageY - size / 2;
 
-      ripple.style.width = ripple.style.height = ${size}px;
-      ripple.style.left = ${x}px;
-      ripple.style.top = ${y}px;
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
 
       setTimeout(function() {
         ripple.remove();
@@ -252,30 +261,13 @@
     <p class="description">Join our community for support, updates, and more!</p>
 
     <!-- Monaco Editor Showcase -->
-    <div class="section-title">Monaco Editor Showcase</div>
+    <div class="section-title">Code Showcase</div>
     <div id="monaco-editor-container"></div>
-
-    <!-- Application Showcase Image -->
-    <div class="section-title">Pluto Executor Showcase</div>
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <!-- Button Section -->
-    <div class="btn-container">
-      <!-- Discord Button -->
-      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-
-      <!-- Nuke Tool Button -->
-      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
-
-      <!-- Pluto Executor Button -->
-      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Go to Pluto Executor</a>
-    </div>
   </section>
 
   <!-- Credits Section -->
   <section id="credits">
-    <h2 class="section-title">Credits</h2>
-    <p class="credits">This interface was made by Solar (@ytz_solar).</p>
+    <p class="credits">This was made by Solar. Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
   </section>
 
 </body>
