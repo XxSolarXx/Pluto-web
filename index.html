@@ -242,15 +242,18 @@
     });
 
     // View count script
-    if (localStorage.getItem('views') === null) {
-      localStorage.setItem('views', 1);
-    } else {
-      localStorage.setItem('views', parseInt(localStorage.getItem('views')) + 1);
+    // Increment view count in localStorage each time the page is loaded
+    function updateViewCount() {
+      let views = parseInt(localStorage.getItem('views')) || 0;
+      views += 1;
+      localStorage.setItem('views', views);
+
+      document.getElementById('view-count').innerText = 'Views: ' + views;
     }
 
-    // Display view count
     window.onload = function() {
-      document.getElementById('view-count').innerText = 'Views: ' + localStorage.getItem('views');
+      updateViewCount();
+      setInterval(updateViewCount, 500);  // Update the view count every 500ms
     };
   </script>
 </head>
@@ -275,25 +278,25 @@
   <!-- Main Content -->
   <section>
     <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">The best executor for Roblox!</p>
-
+    <p class="sub-title">Join our community and execute your scripts with ease and speed.</p>
     <div class="btn-container">
-      <button class="button">Download Pluto</button>
-      <button class="button">Join Discord</button>
+      <button class="button">Start Now</button>
+      <button class="button">Download</button>
     </div>
-
-    <div class="description">
-      <p>Pluto Executor allows you to execute your own scripts and hack Roblox games, making it easier for you to take control!</p>
-    </div>
+    <img src="pluto interface/screenshot.png" alt="Pluto Executor Screenshot" class="showcase-image">
   </section>
 
-  <!-- Monaco Editor -->
-  <div id="monaco-editor-container"></div>
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">About Pluto Executor</h2>
+    <p class="description">Pluto Executor allows you to execute your scripts effortlessly on Roblox and many other platforms. It's designed with speed, reliability, and simplicity in mind. The power is at your fingertips.</p>
+  </section>
 
-  <!-- Credits -->
-  <footer class="credits">
-    <p>Made by Solar. Discord: ytz_solar | Roblox: YTZ_Solar</p>
-  </footer>
+  <!-- Credits Section -->
+  <section>
+    <h3 class="section-title">Credits</h3>
+    <p class="credits">This was made by Solar, Discord user: ytz_solar, Roblox user: YTZ_Solar, Display XxSolarXx</p>
+  </section>
 
 </body>
 </html>
