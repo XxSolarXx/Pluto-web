@@ -176,10 +176,16 @@
 
     /* View Counter */
     .view-counter {
+      position: fixed;
+      top: 10px;
+      right: 10px;
       color: #FFFFFF;
       font-size: 1.2em;
-      margin-top: 20px;
       font-weight: bold;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
     }
   </style>
 
@@ -222,8 +228,8 @@
 
       // Get current view count and update the page
       viewCounterRef.on("value", function(snapshot) {
-        const viewCount = snapshot.val();
-        document.getElementById("view-counter").innerText = `Current Views: ${viewCount}`;
+        const viewCount = snapshot.val() || 0;
+        document.getElementById("view-counter").innerText = `Views: ${viewCount}`;
       });
     };
   </script>
@@ -250,22 +256,13 @@
     <p class="sub-title">Experience a 94% UNC Execution, it executes effectively and allows you to unlock a new world of cheats in your Roblox games. You can join our server for support or use our scripts we have for you to test. Download Now and experience this all!</p>
     <p class="description">Join our community for support, updates, and more!</p>
 
-    <!-- View Counter -->
-    <div id="view-counter" class="view-counter">Loading view count...</div>
-
     <!-- Monaco Editor Showcase -->
     <div class="section-title">Monaco Editor Showcase</div>
     <div id="monaco-editor-container"></div>
 
-    <!-- Application Showcase Image -->
-    <div class="section-title">Pluto Executor Showcase</div>
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <!-- Button Section -->
+    <!-- Download and Discord Buttons -->
     <div class="btn-container">
-      <!-- Discord Button -->
       <a href="https://discord.gg/getpluto" target="_blank" class="button">Join Discord</a>
-      <!-- GitHub Button -->
       <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" class="button">Download Pluto</a>
     </div>
   </section>
@@ -275,6 +272,9 @@
     <h2 class="section-title">Credits</h2>
     <p>This was made by Solar, Their Discord user is ytz_solar, Roblox user is YTZ_Solar, Display XxSolarXx.</p>
   </section>
+
+  <!-- View Counter -->
+  <div id="view-counter" class="view-counter">Loading view count...</div>
 
 </body>
 </html>
