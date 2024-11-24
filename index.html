@@ -232,9 +232,9 @@
       var x = e.pageX - size / 2;
       var y = e.pageY - size / 2;
 
-      ripple.style.width = ripple.style.height = `${size}px`;
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
+      ripple.style.width = ripple.style.height = ${size}px;
+      ripple.style.left = ${x}px;
+      ripple.style.top = ${y}px;
 
       setTimeout(function() {
         ripple.remove();
@@ -242,18 +242,15 @@
     });
 
     // View count script
-    // Increment view count in localStorage each time the page is loaded
-    function updateViewCount() {
-      let views = parseInt(localStorage.getItem('views')) || 0;
-      views += 1;
-      localStorage.setItem('views', views);
-
-      document.getElementById('view-count').innerText = 'Views: ' + views;
+    if (localStorage.getItem('views') === null) {
+      localStorage.setItem('views', 1);
+    } else {
+      localStorage.setItem('views', parseInt(localStorage.getItem('views')) + 1);
     }
 
+    // Display view count
     window.onload = function() {
-      updateViewCount();
-      setInterval(updateViewCount, 500);  // Update the view count every 500ms
+      document.getElementById('view-count').innerText = 'Views: ' + localStorage.getItem('views');
     };
   </script>
 </head>
@@ -278,25 +275,25 @@
   <!-- Main Content -->
   <section>
     <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">Join our community and execute your scripts with ease and speed.</p>
+    <p class="sub-title">The best executor for Roblox!</p>
+
     <div class="btn-container">
-      <button class="button">Start Now</button>
-      <button class="button">Download</button>
+      <button class="button">Download Pluto</button>
+      <button class="button">Join Discord</button>
     </div>
-    <img src="pluto interface/screenshot.png" alt="Pluto Executor Screenshot" class="showcase-image">
+
+    <div class="description">
+      <p>Pluto Executor allows you to execute your own scripts and hack Roblox games, making it easier for you to take control!</p>
+    </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2 class="section-title">About Pluto Executor</h2>
-    <p class="description">Pluto Executor allows you to execute your scripts effortlessly on Roblox and many other platforms. It's designed with speed, reliability, and simplicity in mind. The power is at your fingertips.</p>
-  </section>
+  <!-- Monaco Editor -->
+  <div id="monaco-editor-container"></div>
 
-  <!-- Credits Section -->
-  <section>
-    <h3 class="section-title">Credits</h3>
-    <p class="credits">This was made by Solar, Discord user: ytz_solar, Roblox user: YTZ_Solar, Display XxSolarXx</p>
-  </section>
+  <!-- Credits -->
+  <footer class="credits">
+    <p>Made by Solar. Discord: ytz_solar | Roblox: YTZ_Solar</p>
+  </footer>
 
 </body>
 </html>
