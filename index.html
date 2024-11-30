@@ -98,7 +98,6 @@
       transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
       animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
-
     .button:hover {
       background-color: #0056b3;
       transform: scale(1.05);
@@ -208,10 +207,7 @@
     .logout-btn {
       background-color: #FF5733;
       color: white;
-      padding: 4px 8px; /* Reduced padding */
-      font-size: 0.8em; /* Reduced font size */
     }
-
     .logout-btn:hover {
       background-color: #C44322;
     }
@@ -296,69 +292,103 @@
       const authButtons = document.querySelectorAll(".auth-button");
       const header = document.querySelector("header");
 
-      header.innerHTML = loggedIn ?
-        `<button class="logout-btn" onclick="logout()">Log Out (${currentUser})</button>` :
-        `<a href="#" class="auth-button" onclick="openLoginModal()">Log In</a>
-         <a href="#" class="auth-button" onclick="openRegisterModal()">Register</a>`;
+      header.innerHTML = 
+        <span>Welcome, ${currentUser}</span>
+        <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>
+      ;
+    }
+
+    function openLogoutModal() {
+      document.getElementById("logoutModal").style.display = "flex";
+    }
+
+    function closeLogoutModal() {
+      document.getElementById("logoutModal").style.display = "none";
     }
 
     function logout() {
-      loggedIn = false;
-      currentUser = "";
-      updateAuthUI();
+      const username = document.getElementById("logoutUsername").value;
+      const password = document.getElementById("logoutPassword").value;
+
+      if(username === currentUser && password) {
+        loggedIn = false;
+        currentUser = "";
+        closeLogoutModal();
+        updateAuthUI();
+      } else {
+        alert("Incorrect username or password.");
+      }
     }
-
-    updateAuthUI(); // Initialize UI based on login state
-
   </script>
 </head>
 <body>
-  <!-- Background video -->
+
+  <!-- Video Background -->
   <video autoplay muted loop class="background-video">
-    <source src="your-video.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
   </video>
 
-  <header></header>
+  <!-- Header with Navigation -->
+  <header>
+    <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
+    <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
+  </header>
 
-  <div class="main-content">
-    <h1 class="main-title">Welcome to Pluto Executor</h1>
-    <p class="sub-title">The ultimate platform to enhance your coding experience!</p>
+  <!-- Home Section -->
+  <section id="home">
+    <h1 class="main-title">Pluto Executor</h1>
+    <p class="sub-title">Experience a 94% UNC Execution...</p>
+    <div class="section-title">Monaco Editor Showcase</div>
+    <div id="monaco-editor-container"></div>
+
+    <div class="section-title">Pluto Executor Showcase</div>
+    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
+
     <div class="btn-container">
-      <button class="button" onclick="openLoginModal()">Log In</button>
-      <button class="button" onclick="openRegisterModal()">Register</button>
+      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
+      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
+      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Download Pluto Executor</a>
     </div>
-  </div>
+  </section>
 
   <!-- Modal for Login -->
-  <div class="modal" id="loginModal">
+  <div id="loginModal" class="modal">
     <div class="modal-content">
-      <h2>Log In</h2>
-      <input type="text" id="loginUsername" placeholder="Username">
-      <input type="password" id="loginPassword" placeholder="Password">
-      <button onclick="login()">Log In</button>
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" id="loginUsername" />
+      <input type="password" placeholder="Password" id="loginPassword" />
+      <button onclick="login()">Login</button>
       <button class="close-btn" onclick="closeLoginModal()">Close</button>
     </div>
   </div>
 
   <!-- Modal for Register -->
-  <div class="modal" id="registerModal">
+  <div id="registerModal" class="modal">
     <div class="modal-content">
       <h2>Register</h2>
-      <input type="text" id="registerUsername" placeholder="Username">
-      <input type="password" id="registerPassword" placeholder="Password">
+      <input type="text" placeholder="Username" id="registerUsername" />
+      <input type="password" placeholder="Password" id="registerPassword" />
       <button onclick="register()">Register</button>
       <button class="close-btn" onclick="closeRegisterModal()">Close</button>
     </div>
   </div>
 
-  <!-- Code Editor -->
-  <div id="monaco-editor-container"></div>
-
-  <!-- Showcase Image -->
-  <img class="showcase-image" src="showcase.jpg" alt="Pluto Showcase">
-
-  <div class="credits">
-    <p>Made with ❤️ by YTZ Solar</p>
+  <!-- Modal for Logout -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <h2>Log out</h2>
+      <input type="text" placeholder="Username" id="logoutUsername" />
+      <input type="password" placeholder="Password" id="logoutPassword" />
+      <button onclick="logout()">Log out</button>
+      <button class="close-btn" onclick="closeLogoutModal()">Close</button>
+    </div>
   </div>
+
+  <!-- Credits Section -->
+  <section id="credits">
+    <h2 class="section-title">Credits</h2>
+    <p class="credits">This interface was made by Solar (@ytz_solar).</p>
+  </section>
+
 </body>
 </html>
