@@ -34,9 +34,9 @@
 
     header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       padding: 16px;
-      gap: 20px;
       background-color: rgba(0, 0, 0, 0.7);
       position: fixed;
       top: 0;
@@ -163,12 +163,13 @@
       padding: 30px;
       border-radius: 8px;
       text-align: center;
+      width: 300px;
     }
 
     input {
       margin: 10px 0;
       padding: 10px;
-      width: 250px;
+      width: 100%;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
@@ -185,6 +186,18 @@
 
     .close-btn:hover {
       background-color: #cc0000;
+    }
+
+    .login-btn, .register-btn {
+      background-color: #007BFF;
+      color: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    .login-btn:hover, .register-btn:hover {
+      background-color: #0056b3;
     }
 
   </style>
@@ -228,8 +241,16 @@
       document.getElementById("loginModal").style.display = "flex";
     }
 
+    function openRegisterModal() {
+      document.getElementById("registerModal").style.display = "flex";
+    }
+
     function closeLoginModal() {
       document.getElementById("loginModal").style.display = "none";
+    }
+
+    function closeRegisterModal() {
+      document.getElementById("registerModal").style.display = "none";
     }
 
     function login() {
@@ -252,7 +273,7 @@
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       alert("Registration successful!");
-      closeLoginModal();
+      closeRegisterModal();
     }
   </script>
 </head>
@@ -266,11 +287,8 @@
 
   <!-- Header with Navigation -->
   <header>
-    <a href="#home">Home</a>
-    <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">Download</a>
-    <a href="https://discord.gg/getpluto" target="_blank" rel="noopener noreferrer">Discord</a>
-    <a href="#credits">Credits</a>
-    <a href="#" onclick="openLoginModal()">Login/Register</a> <!-- Login/Register Tab -->
+    <a href="javascript:void(0);" class="button" onclick="openLoginModal()">Login</a>
+    <a href="javascript:void(0);" class="button" onclick="openRegisterModal()">Register</a>
   </header>
 
   <!-- Home Section -->
@@ -300,26 +318,29 @@
     </div>
   </section>
 
-  <!-- Login/Register Modal -->
+  <!-- Login Modal -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
-      <h2>Login / Register</h2>
+      <h2>Login</h2>
       <input id="loginUsername" type="text" placeholder="Username" required>
       <input id="loginPassword" type="password" placeholder="Password" required>
-      <button onclick="login()">Login</button>
-      <p>Don't have an account? <a href="#" onclick="registerModal()">Register</a></p>
+      <button class="login-btn" onclick="login()">Login</button>
+      <p>Don't have an account? <a href="javascript:void(0);" onclick="openRegisterModal()">Register</a></p>
       <button class="close-btn" onclick="closeLoginModal()">Close</button>
     </div>
   </div>
 
-  <script>
-    function registerModal() {
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-      document.querySelector(".modal-content h2").innerText = 'Register';
-      document.querySelector(".modal-content p").innerHTML = 'Already have an account? <a href="#" onclick="loginModal()">Login</a>';
-    }
-  </script>
+  <!-- Register Modal -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <h2>Register</h2>
+      <input id="registerUsername" type="text" placeholder="Username" required>
+      <input id="registerPassword" type="password" placeholder="Password" required>
+      <button class="register-btn" onclick="register()">Register</button>
+      <p>Already have an account? <a href="javascript:void(0);" onclick="openLoginModal()">Login</a></p>
+      <button class="close-btn" onclick="closeRegisterModal()">Close</button>
+    </div>
+  </div>
 
   <!-- Credits Section -->
   <section id="credits">
