@@ -34,7 +34,7 @@
 
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;  /* Align buttons to the right */
       align-items: center;
       padding: 16px;
       background-color: rgba(0, 0, 0, 0.7);
@@ -44,19 +44,27 @@
       z-index: 10;
     }
 
-    a {
-      color: #007BFF;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    a:hover {
-      background-color: #0056b3;
+    /* Style for login/register buttons */
+    .auth-button {
+      background-color: #007BFF;
       color: #FFFFFF;
-      transform: scale(1.05);
+      padding: 8px 16px;
+      border-radius: 5px;
+      margin-left: 15px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      text-decoration: none;
     }
 
+    .auth-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Main Title */
     .main-title {
       font-size: 3.5em;
       letter-spacing: 2px;
@@ -65,6 +73,7 @@
       animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite;
     }
 
+    /* Other content styles... (remaining unchanged) */
     .sub-title {
       font-size: 1.2em;
       color: #FFFFFF;
@@ -95,6 +104,7 @@
       transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
       animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
+
     .button:hover {
       background-color: #0056b3;
       transform: scale(1.05);
@@ -137,7 +147,6 @@
       text-align: left;
     }
 
-    /* Section Title */
     .section-title {
       font-size: 2em;
       font-weight: bold;
@@ -199,7 +208,6 @@
     .login-btn:hover, .register-btn:hover {
       background-color: #0056b3;
     }
-
   </style>
 
   <!-- Monaco Editor Scripts -->
@@ -279,41 +287,28 @@
 </head>
 <body>
 
-  <!-- Background Video -->
-  <video class="background-video" autoplay loop muted>
-    <source src="pluto interface/dark-galaxy.960x540.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+  <!-- Video Background -->
+  <video autoplay muted loop class="background-video">
+    <source src="pluto-executor-background.mp4" type="video/mp4">
   </video>
 
-  <!-- Header with Navigation -->
   <header>
-    <a href="javascript:void(0);" class="button" onclick="openLoginModal()">Login</a>
-    <a href="javascript:void(0);" class="button" onclick="openRegisterModal()">Register</a>
+    <!-- Login/Register buttons -->
+    <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
+    <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
   </header>
 
   <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">Experience a 94% UNC Execution, it executes effectively and allows you to unlock a new world of cheats in your Roblox games. You can join our server for support or use our scripts we have for you to test. Download Now and experience this all!</p>
-    <p class="description">Join our community for support, updates, and more!</p>
-
-    <!-- Monaco Editor Showcase -->
+    <p class="sub-title">Experience a 94% UNC Execution...</p>
     <div class="section-title">Monaco Editor Showcase</div>
     <div id="monaco-editor-container"></div>
-
-    <!-- Application Showcase Image -->
     <div class="section-title">Pluto Executor Showcase</div>
     <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <!-- Button Section -->
     <div class="btn-container">
-      <!-- Discord Button -->
       <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-
-      <!-- Nuke Tool Button -->
       <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
-
-      <!-- Pluto Executor Button -->
       <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Download Pluto Executor</a>
     </div>
   </section>
