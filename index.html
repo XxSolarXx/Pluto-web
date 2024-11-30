@@ -44,7 +44,7 @@
       z-index: 10;
     }
 
-    a.auth-button {
+    a.auth-button, .logout-btn {
       color: #007BFF;
       text-decoration: none;
       padding: 8px 16px;
@@ -54,7 +54,7 @@
       transition: background-color 0.3s, transform 0.2s;
     }
 
-    a.auth-button:hover {
+    a.auth-button:hover, .logout-btn:hover {
       background-color: #0056b3;
       color: #FFFFFF;
       transform: scale(1.05);
@@ -204,12 +204,34 @@
       margin-top: 10px;
     }
 
-    .logout-btn {
-      background-color: #FF5733;
-      color: white;
+    /* Consistent button styles for Login, Register, and Logout */
+    .auth-button, .logout-btn {
+      color: #007BFF;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 1em;
+      transition: background-color 0.3s, transform 0.2s;
     }
+
+    .auth-button:hover, .logout-btn:hover {
+      background-color: #0056b3;
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    .logout-btn {
+      background-color: #007BFF;
+      color: white;
+      font-size: 1em;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
     .logout-btn:hover {
-      background-color: #C44322;
+      background-color: #ff4d4d;
     }
 
   </style>
@@ -247,9 +269,7 @@
       });
     });
 
-    let loggedIn = false;
-    let currentUser = "";
-
+    // Login and Register Modal Logic
     function openLoginModal() {
       document.getElementById("loginModal").style.display = "flex";
     }
@@ -267,128 +287,63 @@
     }
 
     function login() {
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-
-      // Mocking a successful login
-      if(username && password) {
-        loggedIn = true;
-        currentUser = username;
-        document.getElementById("loginModal").style.display = "none";
-        updateAuthUI();
-      }
+      // Perform login logic here
+      closeLoginModal();
     }
 
     function register() {
-      const username = document.getElementById("registerUsername").value;
-      const password = document.getElementById("registerPassword").value;
-
-      // Mocking a successful registration
-      alert("Registered successfully!");
+      // Perform register logic here
       closeRegisterModal();
     }
 
-    function updateAuthUI() {
-      const authButtons = document.querySelectorAll(".auth-button");
-      const header = document.querySelector("header");
-
-      header.innerHTML = `
-        <span>Welcome, ${currentUser}</span>
-        <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>
-      `;
-    }
-
-    function openLogoutModal() {
-      document.getElementById("logoutModal").style.display = "flex";
-    }
-
-    function closeLogoutModal() {
-      document.getElementById("logoutModal").style.display = "none";
-    }
-
     function logout() {
-      const username = document.getElementById("logoutUsername").value;
-      const password = document.getElementById("logoutPassword").value;
-
-      if(username === currentUser && password) {
-        loggedIn = false;
-        currentUser = "";
-        closeLogoutModal();
-        updateAuthUI();
-      } else {
-        alert("Incorrect username or password.");
-      }
+      // Perform logout logic here
+      alert('You have logged out!');
     }
   </script>
 </head>
 <body>
-
-  <!-- Video Background -->
-  <video autoplay muted loop class="background-video">
-    <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
+  <video class="background-video" autoplay muted loop>
+    <source src="https://cdn.discordapp.com/attachments/1203010647468937800/1205632804945790979/ezgif.com-video-to-gif.mp4" type="video/mp4">
   </video>
-
-  <!-- Header with Navigation -->
   <header>
-    <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
+    <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Log In</a>
     <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
+    <button class="logout-btn" onclick="logout()">Log Out</button>
   </header>
 
-  <!-- Home Section -->
-  <section id="home">
-    <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">Experience a 94% UNC Execution...</p>
-    <div class="section-title">Monaco Editor Showcase</div>
-    <div id="monaco-editor-container"></div>
-
-    <div class="section-title">Pluto Executor Showcase</div>
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <div class="btn-container">
-      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
-      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Download Pluto Executor</a>
-    </div>
-  </section>
-
-  <!-- Modal for Login -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <h2>Login</h2>
-      <input type="text" placeholder="Username" id="loginUsername" />
-      <input type="password" placeholder="Password" id="loginPassword" />
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
       <button onclick="login()">Login</button>
       <button class="close-btn" onclick="closeLoginModal()">Close</button>
     </div>
   </div>
 
-  <!-- Modal for Register -->
   <div id="registerModal" class="modal">
     <div class="modal-content">
       <h2>Register</h2>
-      <input type="text" placeholder="Username" id="registerUsername" />
-      <input type="password" placeholder="Password" id="registerPassword" />
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
       <button onclick="register()">Register</button>
       <button class="close-btn" onclick="closeRegisterModal()">Close</button>
     </div>
   </div>
 
-  <!-- Modal for Logout -->
-  <div id="logoutModal" class="modal">
-    <div class="modal-content">
-      <h2>Log out</h2>
-      <input type="text" placeholder="Username" id="logoutUsername" />
-      <input type="password" placeholder="Password" id="logoutPassword" />
-      <button onclick="logout()">Log out</button>
-      <button class="close-btn" onclick="closeLogoutModal()">Close</button>
+  <section>
+    <h1 class="main-title">Pluto Executor</h1>
+    <p class="sub-title">Your one-stop solution for executing scripts with ease and precision.</p>
+    <div class="btn-container">
+      <button class="button" onclick="window.location.href='#'">Get Started</button>
     </div>
-  </div>
-
-  <!-- Credits Section -->
-  <section id="credits">
-    <h2 class="section-title">Credits</h2>
-    <p class="credits">This interface was made by Solar (@ytz_solar).</p>
   </section>
-
+  <section>
+    <h2 class="section-title">Features</h2>
+    <div class="description">
+      Pluto Executor allows you to easily run your scripts and get real-time results. With a powerful user interface and seamless experience, it's built to meet the needs of both beginner and advanced users.
+    </div>
+  </section>
 </body>
 </html>
