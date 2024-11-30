@@ -156,6 +156,7 @@
       margin-bottom: 20px;
     }
 
+    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -166,7 +167,7 @@
       background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
-      z-index: 100;
+      z-index: 20; /* Ensures modal appears above other content */
     }
 
     .modal-content {
@@ -175,6 +176,7 @@
       border-radius: 8px;
       width: 300px;
       text-align: center;
+      z-index: 30; /* Ensures modal content appears above modal background */
     }
 
     .modal input {
@@ -294,9 +296,8 @@
       const header = document.querySelector("header");
 
       header.innerHTML = 
-        <span>Welcome, ${currentUser}</span>
-        <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>
-      ;
+        `<span>Welcome, ${currentUser}</span>
+         <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>`;
     }
 
     function openLogoutModal() {
