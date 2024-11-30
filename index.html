@@ -137,15 +137,6 @@
       text-align: left;
     }
 
-    /* Showcase Image */
-    .showcase-image {
-      width: 80%;
-      max-width: 800px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-
     /* Section Title */
     .section-title {
       font-size: 2em;
@@ -154,25 +145,48 @@
       margin-bottom: 20px;
     }
 
-    /* Ripple Effect */
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      animation: ripple-animation 0.6s linear;
-      pointer-events: none;
+    /* Login/Register Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes ripple-animation {
-      0% {
-        transform: scale(0);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(5);
-        opacity: 0;
-      }
+    .modal-content {
+      background-color: #333;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
     }
+
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .close-btn {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background-color: #cc0000;
+    }
+
   </style>
 
   <!-- Monaco Editor Scripts -->
@@ -209,24 +223,37 @@
       });
     });
 
-    // Ripple effect on click
-    document.body.addEventListener('click', function(e) {
-      var ripple = document.createElement('div');
-      ripple.classList.add('ripple');
-      document.body.appendChild(ripple);
+    // Login and Register functionality
+    function openLoginModal() {
+      document.getElementById("loginModal").style.display = "flex";
+    }
 
-      var size = Math.max(window.innerWidth, window.innerHeight);
-      var x = e.pageX - size / 2;
-      var y = e.pageY - size / 2;
+    function closeLoginModal() {
+      document.getElementById("loginModal").style.display = "none";
+    }
 
-      ripple.style.width = ripple.style.height = ${size}px;
-      ripple.style.left = ${x}px;
-      ripple.style.top = ${y}px;
+    function login() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+      const savedUsername = localStorage.getItem("username");
+      const savedPassword = localStorage.getItem("password");
 
-      setTimeout(function() {
-        ripple.remove();
-      }, 600);
-    });
+      if (username === savedUsername && password === savedPassword) {
+        alert("Login successful!");
+        closeLoginModal();
+      } else {
+        alert("Invalid username or password.");
+      }
+    }
+
+    function register() {
+      const username = document.getElementById("registerUsername").value;
+      const password = document.getElementById("registerPassword").value;
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+      alert("Registration successful!");
+      closeLoginModal();
+    }
   </script>
 </head>
 <body>
@@ -243,6 +270,7 @@
     <a href="https://github.com/XxSolarXx/pluto-executor" target="_blank" rel="noopener noreferrer">Download</a>
     <a href="https://discord.gg/getpluto" target="_blank" rel="noopener noreferrer">Discord</a>
     <a href="#credits">Credits</a>
+    <a href="#" onclick="openLoginModal()">Login/Register</a> <!-- Login/Register Tab -->
   </header>
 
   <!-- Home Section -->
@@ -271,6 +299,27 @@
       <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Download Pluto Executor</a>
     </div>
   </section>
+
+  <!-- Login/Register Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Login / Register</h2>
+      <input id="loginUsername" type="text" placeholder="Username" required>
+      <input id="loginPassword" type="password" placeholder="Password" required>
+      <button onclick="login()">Login</button>
+      <p>Don't have an account? <a href="#" onclick="registerModal()">Register</a></p>
+      <button class="close-btn" onclick="closeLoginModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function registerModal() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+      document.querySelector(".modal-content h2").innerText = 'Register';
+      document.querySelector(".modal-content p").innerHTML = 'Already have an account? <a href="#" onclick="loginModal()">Login</a>';
+    }
+  </script>
 
   <!-- Credits Section -->
   <section id="credits">
