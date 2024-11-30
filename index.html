@@ -204,7 +204,6 @@
     .close-btn {
       background-color: #333;
       color: #fff;
-      margin-top: 10px;
     }
 
     .logout-btn {
@@ -216,42 +215,10 @@
     }
 
   </style>
-  <!-- Monaco Editor Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
-    window.require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' }}); 
-    window.require(['vs/editor/editor.main'], function() {
-      monaco.editor.defineTheme('blackTheme', {
-        base: 'vs-dark',
-        inherit: true,
-        rules: [],
-        colors: {
-          'editor.background': '#000000'
-        }
-      });
-
-      monaco.editor.create(document.getElementById('monaco-editor-container'), {
-        value: 'Join https://discord.gg/getpluto\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
-        language: 'python',
-        theme: 'blackTheme',
-        lineNumbers: "on",
-        minimap: { enabled: false },
-        fontSize: 12,
-        scrollBeyondLastLine: false,
-        wordWrap: 'on',
-        fontFamily: 'Courier New, monospace',
-        tabSize: 2,
-        indentSize: 2,
-        wrappingIndent: 'none',
-        cursorStyle: 'line',
-        wordWrapColumn: 80,
-        autoIndent: "full",
-        lineHeight: 22
-      });
-    });
-
     let loggedIn = false;
     let currentUser = "";
+    let users = []; // Store registered users to prevent reuse of usernames
 
     function openLoginModal() {
       document.getElementById("loginModal").style.display = "flex";
@@ -273,12 +240,13 @@
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
-      // Mocking a successful login
-      if(username && password) {
+      if (users.includes(username) && password) {
         loggedIn = true;
         currentUser = username;
-        document.getElementById("loginModal").style.display = "none";
+        closeLoginModal();
         updateAuthUI();
+      } else {
+        alert("Incorrect username or password.");
       }
     }
 
@@ -286,18 +254,32 @@
       const username = document.getElementById("registerUsername").value;
       const password = document.getElementById("registerPassword").value;
 
-      // Mocking a successful registration
-      alert("Registered successfully!");
-      closeRegisterModal();
+      if (users.includes(username)) {
+        alert("This username is already taken. Please choose a different one.");
+        return;
+      }
+
+      if (username && password) {
+        users.push(username); // Add the new user to the list of users
+        alert("Registered successfully!");
+        closeRegisterModal();
+      } else {
+        alert("Please enter both username and password.");
+      }
     }
 
     function updateAuthUI() {
-      const authButtons = document.querySelectorAll(".auth-button");
       const header = document.querySelector("header");
 
-      header.innerHTML = 
-        `<span>Welcome, ${currentUser}</span>
-         <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>`;
+      if (loggedIn) {
+        header.innerHTML = 
+          `<span>Welcome, ${currentUser}</span>
+           <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>`;
+      } else {
+        header.innerHTML = 
+          `<a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
+           <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>`;
+      }
     }
 
     function openLogoutModal() {
@@ -312,7 +294,7 @@
       const username = document.getElementById("logoutUsername").value;
       const password = document.getElementById("logoutPassword").value;
 
-      if(username === currentUser && password) {
+      if (username === currentUser && password) {
         loggedIn = false;
         currentUser = "";
         closeLogoutModal();
@@ -321,22 +303,22 @@
         alert("Incorrect username or password.");
       }
     }
+
+    // Initialize UI on page load
+    window.onload = function() {
+      updateAuthUI(); // Make sure the correct buttons are displayed initially
+    }
   </script>
 </head>
 <body>
-
-  <!-- Video Background -->
   <video autoplay muted loop class="background-video">
     <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
   </video>
 
-  <!-- Header with Navigation -->
   <header>
-    <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
-    <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
+    <!-- Authentication buttons dynamically updated -->
   </header>
 
-  <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
     <p class="sub-title">Experience a 94% UNC Execution...</p>
@@ -386,7 +368,6 @@
     </div>
   </div>
 
-  <!-- Credits Section -->
   <section id="credits">
     <h2 class="section-title">Credits</h2>
     <p class="credits">This interface was made by Solar (@ytz_solar).</p>
