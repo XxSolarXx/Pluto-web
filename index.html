@@ -274,18 +274,13 @@
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
-      if (users.includes(username)) {
-        alert("This username is already taken. Please choose a different one.");
-        return;
-      }
-
-      if (username && password) {
+      if (users.includes(username) && password) {
         loggedIn = true;
         currentUser = username;
-        document.getElementById("loginModal").style.display = "none";
+        closeLoginModal();
         updateAuthUI();
       } else {
-        alert("Please enter both username and password.");
+        alert("Incorrect username or password.");
       }
     }
 
@@ -308,7 +303,6 @@
     }
 
     function updateAuthUI() {
-      const authButtons = document.querySelectorAll(".auth-button");
       const header = document.querySelector("header");
 
       if (loggedIn) {
@@ -343,20 +337,18 @@
         alert("Incorrect username or password.");
       }
     }
+
   </script>
 </head>
 <body>
-  <!-- Video Background -->
   <video autoplay muted loop class="background-video">
     <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
   </video>
 
-  <!-- Header with Navigation -->
   <header>
     <!-- Authentication buttons dynamically updated -->
   </header>
 
-  <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
     <p class="sub-title">Experience a 94% UNC Execution...</p>
@@ -406,7 +398,6 @@
     </div>
   </div>
 
-  <!-- Credits Section -->
   <section id="credits">
     <h2 class="section-title">Credits</h2>
     <p class="credits">This interface was made by Solar (@ytz_solar).</p>
