@@ -204,6 +204,14 @@
       margin-top: 10px;
     }
 
+    .logout-btn {
+      background-color: #FF5733;
+      color: white;
+    }
+    .logout-btn:hover {
+      background-color: #C44322;
+    }
+
   </style>
   <!-- Monaco Editor Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
@@ -239,7 +247,9 @@
       });
     });
 
-    // Login and Register Modal Logic
+    let loggedIn = false;
+    let currentUser = "";
+
     function openLoginModal() {
       document.getElementById("loginModal").style.display = "flex";
     }
@@ -257,15 +267,57 @@
     }
 
     function login() {
-      // Perform login logic here
-      alert("Logged in successfully!");
-      closeLoginModal();
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      // Mocking a successful login
+      if(username && password) {
+        loggedIn = true;
+        currentUser = username;
+        document.getElementById("loginModal").style.display = "none";
+        updateAuthUI();
+      }
     }
 
     function register() {
-      // Perform register logic here
+      const username = document.getElementById("registerUsername").value;
+      const password = document.getElementById("registerPassword").value;
+
+      // Mocking a successful registration
       alert("Registered successfully!");
       closeRegisterModal();
+    }
+
+    function updateAuthUI() {
+      const authButtons = document.querySelectorAll(".auth-button");
+      const header = document.querySelector("header");
+
+      header.innerHTML = `
+        <span>Welcome, ${currentUser}</span>
+        <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>
+      `;
+    }
+
+    function openLogoutModal() {
+      document.getElementById("logoutModal").style.display = "flex";
+    }
+
+    function closeLogoutModal() {
+      document.getElementById("logoutModal").style.display = "none";
+    }
+
+    function logout() {
+      const username = document.getElementById("logoutUsername").value;
+      const password = document.getElementById("logoutPassword").value;
+
+      if(username === currentUser && password) {
+        loggedIn = false;
+        currentUser = "";
+        closeLogoutModal();
+        updateAuthUI();
+      } else {
+        alert("Incorrect username or password.");
+      }
     }
   </script>
 </head>
@@ -318,6 +370,17 @@
       <input type="password" placeholder="Password" id="registerPassword" />
       <button onclick="register()">Register</button>
       <button class="close-btn" onclick="closeRegisterModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Modal for Logout -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <h2>Log out</h2>
+      <input type="text" placeholder="Username" id="logoutUsername" />
+      <input type="password" placeholder="Password" id="logoutPassword" />
+      <button onclick="logout()">Log out</button>
+      <button class="close-btn" onclick="closeLogoutModal()">Close</button>
     </div>
   </div>
 
