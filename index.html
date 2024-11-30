@@ -30,14 +30,13 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      opacity: 0.5; /* Make the video slightly transparent */
     }
 
     header {
       display: flex;
-      justify-content: flex-end;  /* Align buttons to the right */
-      align-items: center;
+      justify-content: flex-end;
       padding: 16px;
+      gap: 20px;
       background-color: rgba(0, 0, 0, 0.7);
       position: fixed;
       top: 0;
@@ -45,27 +44,22 @@
       z-index: 10;
     }
 
-    /* Style for login/register buttons */
-    .auth-button {
-      background-color: #007BFF;
-      color: #FFFFFF;
-      padding: 8px 16px;
-      border-radius: 5px;
-      margin-left: 15px;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    a.auth-button {
+      color: #007BFF;
       text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 1em;
+      transition: background-color 0.3s, transform 0.2s;
     }
 
-    .auth-button:hover {
+    a.auth-button:hover {
       background-color: #0056b3;
-      transform: scale(1.1);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      color: #FFFFFF;
+      transform: scale(1.05);
     }
 
-    /* Main Title */
     .main-title {
       font-size: 3.5em;
       letter-spacing: 2px;
@@ -74,7 +68,6 @@
       animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite;
     }
 
-    /* Other content styles... (remaining unchanged) */
     .sub-title {
       font-size: 1.2em;
       color: #FFFFFF;
@@ -105,7 +98,6 @@
       transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
       animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
     }
-
     .button:hover {
       background-color: #0056b3;
       transform: scale(1.05);
@@ -148,6 +140,14 @@
       text-align: left;
     }
 
+    .showcase-image {
+      width: 80%;
+      max-width: 800px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
     .section-title {
       font-size: 2em;
       font-weight: bold;
@@ -155,7 +155,6 @@
       margin-bottom: 20px;
     }
 
-    /* Login/Register Modal */
     .modal {
       display: none;
       position: fixed;
@@ -163,54 +162,49 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
+      z-index: 100;
     }
 
     .modal-content {
-      background-color: #333;
+      background-color: #fff;
       padding: 30px;
       border-radius: 8px;
-      text-align: center;
       width: 300px;
+      text-align: center;
     }
 
-    input {
-      margin: 10px 0;
-      padding: 10px;
+    .modal input {
       width: 100%;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    .modal button {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .modal button:hover {
+      background-color: #0056b3;
     }
 
     .close-btn {
-      background-color: #ff0000;
-      color: white;
-      border: none;
-      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
       margin-top: 10px;
-      border-radius: 5px;
-      cursor: pointer;
     }
 
-    .close-btn:hover {
-      background-color: #cc0000;
-    }
-
-    .login-btn, .register-btn {
-      background-color: #007BFF;
-      color: #FFFFFF;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    .login-btn:hover, .register-btn:hover {
-      background-color: #0056b3;
-    }
   </style>
-
   <!-- Monaco Editor Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
@@ -245,7 +239,7 @@
       });
     });
 
-    // Login and Register functionality
+    // Login and Register Modal Logic
     function openLoginModal() {
       document.getElementById("loginModal").style.display = "flex";
     }
@@ -263,25 +257,14 @@
     }
 
     function login() {
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-      const savedUsername = localStorage.getItem("username");
-      const savedPassword = localStorage.getItem("password");
-
-      if (username === savedUsername && password === savedPassword) {
-        alert("Login successful!");
-        closeLoginModal();
-      } else {
-        alert("Invalid username or password.");
-      }
+      // Perform login logic here
+      alert("Logged in successfully!");
+      closeLoginModal();
     }
 
     function register() {
-      const username = document.getElementById("registerUsername").value;
-      const password = document.getElementById("registerPassword").value;
-      localStorage.setItem("username", username);
-      localStorage.setItem("password", password);
-      alert("Registration successful!");
+      // Perform register logic here
+      alert("Registered successfully!");
       closeRegisterModal();
     }
   </script>
@@ -290,11 +273,11 @@
 
   <!-- Video Background -->
   <video autoplay muted loop class="background-video">
-    <source src="https://github.com/XxSolarXx/Pluto-web/blob/main/pluto%20interface/dark-galaxy.960x540.mp4?raw=true" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
   </video>
 
+  <!-- Header with Navigation -->
   <header>
-    <!-- Login/Register buttons -->
     <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
     <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
   </header>
@@ -305,8 +288,10 @@
     <p class="sub-title">Experience a 94% UNC Execution...</p>
     <div class="section-title">Monaco Editor Showcase</div>
     <div id="monaco-editor-container"></div>
+
     <div class="section-title">Pluto Executor Showcase</div>
     <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
+
     <div class="btn-container">
       <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
       <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
@@ -314,26 +299,24 @@
     </div>
   </section>
 
-  <!-- Login Modal -->
+  <!-- Modal for Login -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <h2>Login</h2>
-      <input id="loginUsername" type="text" placeholder="Username" required>
-      <input id="loginPassword" type="password" placeholder="Password" required>
-      <button class="login-btn" onclick="login()">Login</button>
-      <p>Don't have an account? <a href="javascript:void(0);" onclick="openRegisterModal()">Register</a></p>
+      <input type="text" placeholder="Username" id="loginUsername" />
+      <input type="password" placeholder="Password" id="loginPassword" />
+      <button onclick="login()">Login</button>
       <button class="close-btn" onclick="closeLoginModal()">Close</button>
     </div>
   </div>
 
-  <!-- Register Modal -->
+  <!-- Modal for Register -->
   <div id="registerModal" class="modal">
     <div class="modal-content">
       <h2>Register</h2>
-      <input id="registerUsername" type="text" placeholder="Username" required>
-      <input id="registerPassword" type="password" placeholder="Password" required>
-      <button class="register-btn" onclick="register()">Register</button>
-      <p>Already have an account? <a href="javascript:void(0);" onclick="openLoginModal()">Login</a></p>
+      <input type="text" placeholder="Username" id="registerUsername" />
+      <input type="password" placeholder="Password" id="registerPassword" />
+      <button onclick="register()">Register</button>
       <button class="close-btn" onclick="closeRegisterModal()">Close</button>
     </div>
   </div>
