@@ -252,7 +252,6 @@
 
     let loggedIn = false;
     let currentUser = "";
-    let users = []; // Store registered users to prevent reuse of usernames
 
     function openLoginModal() {
       document.getElementById("loginModal").style.display = "flex";
@@ -274,13 +273,12 @@
       const username = document.getElementById("loginUsername").value;
       const password = document.getElementById("loginPassword").value;
 
-      if (users.includes(username) && password) {
+      // Mocking a successful login
+      if(username && password) {
         loggedIn = true;
         currentUser = username;
-        closeLoginModal();
+        document.getElementById("loginModal").style.display = "none";
         updateAuthUI();
-      } else {
-        alert("Incorrect username or password.");
       }
     }
 
@@ -288,32 +286,18 @@
       const username = document.getElementById("registerUsername").value;
       const password = document.getElementById("registerPassword").value;
 
-      if (users.includes(username)) {
-        alert("This username is already taken. Please choose a different one.");
-        return;
-      }
-
-      if (username && password) {
-        users.push(username); // Add the new user to the list of users
-        alert("Registered successfully!");
-        closeRegisterModal();
-      } else {
-        alert("Please enter both username and password.");
-      }
+      // Mocking a successful registration
+      alert("Registered successfully!");
+      closeRegisterModal();
     }
 
     function updateAuthUI() {
+      const authButtons = document.querySelectorAll(".auth-button");
       const header = document.querySelector("header");
 
-      if (loggedIn) {
-        header.innerHTML = 
-          `<span>Welcome, ${currentUser}</span>
-           <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>`;
-      } else {
-        header.innerHTML = 
-          `<a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
-           <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>`;
-      }
+      header.innerHTML = 
+        `<span>Welcome, ${currentUser}</span>
+         <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>`;
     }
 
     function openLogoutModal() {
@@ -328,7 +312,7 @@
       const username = document.getElementById("logoutUsername").value;
       const password = document.getElementById("logoutPassword").value;
 
-      if (username === currentUser && password) {
+      if(username === currentUser && password) {
         loggedIn = false;
         currentUser = "";
         closeLogoutModal();
@@ -337,18 +321,22 @@
         alert("Incorrect username or password.");
       }
     }
-
   </script>
 </head>
 <body>
+
+  <!-- Video Background -->
   <video autoplay muted loop class="background-video">
     <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
   </video>
 
+  <!-- Header with Navigation -->
   <header>
-    <!-- Authentication buttons dynamically updated -->
+    <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
+    <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
   </header>
 
+  <!-- Home Section -->
   <section id="home">
     <h1 class="main-title">Pluto Executor</h1>
     <p class="sub-title">Experience a 94% UNC Execution...</p>
@@ -398,6 +386,7 @@
     </div>
   </div>
 
+  <!-- Credits Section -->
   <section id="credits">
     <h2 class="section-title">Credits</h2>
     <p class="credits">This interface was made by Solar (@ytz_solar).</p>
