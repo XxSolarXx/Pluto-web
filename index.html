@@ -251,7 +251,7 @@
     });
 
     let loggedIn = false;
-    let currentUser = "";
+    let currentUser = "";  // Store the current user (if logged in)
 
     function openLoginModal() {
       document.getElementById("loginModal").style.display = "flex";
@@ -286,9 +286,16 @@
       const username = document.getElementById("registerUsername").value;
       const password = document.getElementById("registerPassword").value;
 
-      // Mocking a successful registration
-      alert("Registered successfully!");
-      closeRegisterModal();
+      // Only allow registration if there's no existing user
+      if (currentUser) {
+        alert("A user is already registered. Only one user can exist.");
+      } else {
+        // Mocking a successful registration
+        alert("Registered successfully!");
+        currentUser = username;  // Set the current user to the newly registered user
+        closeRegisterModal();
+        updateAuthUI();
+      }
     }
 
     function updateAuthUI() {
