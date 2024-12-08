@@ -227,18 +227,28 @@
 
   </style>
   <script>
-    let viewsCount = 0;
+    // Check if the view count is stored in localStorage
+    let viewsCount = localStorage.getItem("totalViews");
 
-    // Function to update view count
+    // If no view count is stored, initialize it to 0
+    if (!viewsCount) {
+      viewsCount = 0;
+    }
+
+    // Increment view count
+    viewsCount++;
+
+    // Store the updated view count in localStorage
+    localStorage.setItem("totalViews", viewsCount);
+
+    // Function to update the view count in the page
     function updateViewCount() {
-      viewsCount++;
       document.getElementById("views-counter").innerText = `Total Views: ${viewsCount}`;
     }
 
-    // Call the function on page load to increment views count
+    // Call the function to update view count when page loads
     window.onload = function() {
       updateViewCount();
-      updateAuthUI(); // Ensure correct UI on load
     };
   </script>
 </head>
