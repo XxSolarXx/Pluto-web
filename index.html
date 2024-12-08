@@ -224,11 +224,11 @@
     .logout-btn:hover {
       background-color: #C44322;
     }
-
   </style>
   <script>
     // Simulate storing user data for login
     const users = [];
+    let loggedInUser = null;
 
     function closeLoginModal() {
       document.getElementById('loginModal').style.display = 'none';
@@ -266,13 +266,39 @@
       const user = users.find(u => u.username === username && u.password === password);
 
       if (user) {
+        loggedInUser = user;
         alert('Logged in successfully!');
+        updateHeader();
         closeLoginModal();
       } else {
         alert('Invalid credentials. Please try again.');
       }
     }
 
+    function signout() {
+      loggedInUser = null;
+      updateHeader();
+    }
+
+    function updateHeader() {
+      const header = document.querySelector('header');
+      header.innerHTML = loggedInUser
+        ? `<span>Welcome, ${loggedInUser.username}</span><a href="#" class="auth-button logout-btn" onclick="signout()">Sign Out</a>`
+        : `<a href="#" class="auth-button" onclick="openLoginModal()">Login</a><a href="#" class="auth-button" onclick="openSignupModal()">Sign Up</a>`;
+    }
+
+    // Simulate view count only increasing when a new user joins
+    let viewers = new Set();
+
+    function updateViewCounter() {
+      const userID = Math.random().toString(36).substring(2, 15); // Simulate a unique user ID
+      if (!viewers.has(userID)) {
+        viewers.add(userID);
+        document.getElementById('views-counter').innerText = `Total Views: ${viewers.size}`;
+      }
+    }
+
+    window.onload = updateViewCounter;
   </script>
 </head>
 <body>
@@ -302,33 +328,37 @@
     <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
 
     <div class="btn-container">
-      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
-      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Download Pluto Executor</a>
+      <a href="https://discord.gg/getpluto" class="button">Get Pluto Executor</a>
+      <a href="https://github.com/solarlol123" class="button">View Source Code</a>
     </div>
   </section>
 
-  <!-- Modal for Login -->
+  <!-- Footer Section -->
+  <footer class="credits">
+    <p>Made with ♥ by Solar</p>
+    <p>GitHub: <a href="https://github.com/solarlol123">Solar on GitHub</a></p>
+  </footer>
+
+  <!-- Login Modal -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <h2>Login</h2>
-      <input type="text" placeholder="Username" id="loginUsername" />
-      <input type="password" placeholder="Password" id="loginPassword" />
+      <input type="text" id="loginUsername" placeholder="Username">
+      <input type="password" id="loginPassword" placeholder="Password">
       <button onclick="login()">Login</button>
       <button class="close-btn" onclick="closeLoginModal()">Close</button>
     </div>
   </div>
 
-  <!-- Modal for Sign Up -->
+  <!-- Signup Modal -->
   <div id="signupModal" class="modal">
     <div class="modal-content">
       <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" id="signupUsername" />
-      <input type="password" placeholder="Password" id="signupPassword" />
+      <input type="text" id="signupUsername" placeholder="Username">
+      <input type="password" id="signupPassword" placeholder="Password">
       <button onclick="signup()">Sign Up</button>
       <button class="close-btn" onclick="closeSignupModal()">Close</button>
     </div>
   </div>
-
 </body>
 </html>
