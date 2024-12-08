@@ -250,6 +250,34 @@
     window.onload = function() {
       updateViewCount();
     };
+
+    function showLoginModal() {
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+
+    function closeLoginModal() {
+      document.getElementById('loginModal').style.display = 'none';
+    }
+
+    function login() {
+      // Simulate login process (e.g., authenticate user)
+      alert('Logged in successfully!');
+      closeLoginModal();
+    }
+
+    function showSignupModal() {
+      document.getElementById('signupModal').style.display = 'flex';
+    }
+
+    function closeSignupModal() {
+      document.getElementById('signupModal').style.display = 'none';
+    }
+
+    function signup() {
+      // Simulate sign-up process (e.g., create new user)
+      alert('Signed up successfully!');
+      closeSignupModal();
+    }
   </script>
 </head>
 <body>
@@ -264,7 +292,9 @@
 
   <!-- Header with Navigation -->
   <header>
-    <!-- Buttons will be inserted here dynamically -->
+    <!-- Login and Sign Up buttons -->
+    <button class="auth-button" onclick="showLoginModal()">Login</button>
+    <button class="auth-button" onclick="showSignupModal()">Sign Up</button>
   </header>
 
   <!-- Home Section -->
@@ -295,17 +325,17 @@
     </div>
   </div>
 
-  <script>
-    function closeLoginModal() {
-      document.getElementById('loginModal').style.display = 'none';
-    }
-
-    function login() {
-      // Simulate login process (e.g., authenticate user)
-      alert('Logged in successfully!');
-      closeLoginModal();
-    }
-  </script>
+  <!-- Modal for Signup -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Username" id="signupUsername" />
+      <input type="email" placeholder="Email" id="signupEmail" />
+      <input type="password" placeholder="Password" id="signupPassword" />
+      <button onclick="signup()">Sign Up</button>
+      <button class="close-btn" onclick="closeSignupModal()">Close</button>
+    </div>
+  </div>
 
 </body>
 </html>
