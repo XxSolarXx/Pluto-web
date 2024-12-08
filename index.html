@@ -227,57 +227,52 @@
 
   </style>
   <script>
-    // Check if the view count is stored in localStorage
-    let viewsCount = localStorage.getItem("totalViews");
-
-    // If no view count is stored, initialize it to 0
-    if (!viewsCount) {
-      viewsCount = 0;
-    }
-
-    // Increment view count
-    viewsCount++;
-
-    // Store the updated view count in localStorage
-    localStorage.setItem("totalViews", viewsCount);
-
-    // Function to update the view count in the page
-    function updateViewCount() {
-      document.getElementById("views-counter").innerText = `Total Views: ${viewsCount}`;
-    }
-
-    // Call the function to update view count when page loads
-    window.onload = function() {
-      updateViewCount();
-    };
-
-    function showLoginModal() {
-      document.getElementById('loginModal').style.display = 'flex';
-    }
+    // Simulate storing user data for login
+    const users = [];
 
     function closeLoginModal() {
       document.getElementById('loginModal').style.display = 'none';
-    }
-
-    function login() {
-      // Simulate login process (e.g., authenticate user)
-      alert('Logged in successfully!');
-      closeLoginModal();
-    }
-
-    function showSignupModal() {
-      document.getElementById('signupModal').style.display = 'flex';
     }
 
     function closeSignupModal() {
       document.getElementById('signupModal').style.display = 'none';
     }
 
-    function signup() {
-      // Simulate sign-up process (e.g., create new user)
-      alert('Signed up successfully!');
-      closeSignupModal();
+    function openSignupModal() {
+      document.getElementById('signupModal').style.display = 'flex';
     }
+
+    function openLoginModal() {
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+
+    function signup() {
+      const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+
+      if (username && password) {
+        users.push({ username, password });
+        alert('Account created successfully!');
+        closeSignupModal();
+      } else {
+        alert('Please fill in both fields.');
+      }
+    }
+
+    function login() {
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const user = users.find(u => u.username === username && u.password === password);
+
+      if (user) {
+        alert('Logged in successfully!');
+        closeLoginModal();
+      } else {
+        alert('Invalid credentials. Please try again.');
+      }
+    }
+
   </script>
 </head>
 <body>
@@ -292,9 +287,8 @@
 
   <!-- Header with Navigation -->
   <header>
-    <!-- Login and Sign Up buttons -->
-    <button class="auth-button" onclick="showLoginModal()">Login</button>
-    <button class="auth-button" onclick="showSignupModal()">Sign Up</button>
+    <a href="#" class="auth-button" onclick="openLoginModal()">Login</a>
+    <a href="#" class="auth-button" onclick="openSignupModal()">Sign Up</a>
   </header>
 
   <!-- Home Section -->
@@ -325,12 +319,11 @@
     </div>
   </div>
 
-  <!-- Modal for Signup -->
+  <!-- Modal for Sign Up -->
   <div id="signupModal" class="modal">
     <div class="modal-content">
       <h2>Sign Up</h2>
       <input type="text" placeholder="Username" id="signupUsername" />
-      <input type="email" placeholder="Email" id="signupEmail" />
       <input type="password" placeholder="Password" id="signupPassword" />
       <button onclick="signup()">Sign Up</button>
       <button class="close-btn" onclick="closeSignupModal()">Close</button>
