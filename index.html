@@ -229,23 +229,60 @@
   <script>
     // Simulate storing user data for login
     const users = [];
+    let currentUser = null;
+    let viewCount = 0;
 
+    // Check if the user is logged in
+    function updateAuthButtons() {
+      const loginButton = document.getElementById('loginButton');
+      const signupButton = document.getElementById('signupButton');
+      const userNameDisplay = document.getElementById('userNameDisplay');
+      const signOutButton = document.getElementById('signOutButton');
+
+      if (currentUser) {
+        loginButton.style.display = 'none';
+        signupButton.style.display = 'none';
+        userNameDisplay.innerText = currentUser.username;
+        userNameDisplay.style.display = 'inline-block';
+        signOutButton.style.display = 'inline-block';
+      } else {
+        loginButton.style.display = 'inline-block';
+        signupButton.style.display = 'inline-block';
+        userNameDisplay.style.display = 'none';
+        signOutButton.style.display = 'none';
+      }
+    }
+
+    // Increment view count only for new users
+    function incrementViewCount() {
+      if (!localStorage.getItem('hasVisited')) {
+        localStorage.setItem('hasVisited', 'true');
+        viewCount++;
+        document.getElementById('views-counter').innerText = `Total Views: ${viewCount}`;
+      }
+    }
+
+    // Close login modal
     function closeLoginModal() {
       document.getElementById('loginModal').style.display = 'none';
     }
 
+    // Close signup modal
     function closeSignupModal() {
       document.getElementById('signupModal').style.display = 'none';
     }
 
+    // Open sign up modal
     function openSignupModal() {
       document.getElementById('signupModal').style.display = 'flex';
     }
 
+    // Open login modal
     function openLoginModal() {
       document.getElementById('loginModal').style.display = 'flex';
     }
 
+    // Sign up user
     function signup() {
       const username = document.getElementById('signupUsername').value;
       const password = document.getElementById('signupPassword').value;
@@ -259,6 +296,7 @@
       }
     }
 
+    // Log in user
     function login() {
       const username = document.getElementById('loginUsername').value;
       const password = document.getElementById('loginPassword').value;
@@ -266,69 +304,72 @@
       const user = users.find(u => u.username === username && u.password === password);
 
       if (user) {
+        currentUser = user;
         alert('Logged in successfully!');
         closeLoginModal();
+        updateAuthButtons();
       } else {
         alert('Invalid credentials. Please try again.');
       }
     }
 
+    // Log out user
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('hasVisited');
+      updateAuthButtons();
+    }
+
+    // On page load
+    window.onload = function() {
+      updateAuthButtons();
+      incrementViewCount();
+    };
   </script>
 </head>
 <body>
-
-  <!-- Video Background -->
-  <video autoplay muted loop class="background-video">
-    <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
-  </video>
-
-  <!-- Total Views Counter -->
   <div id="views-counter">Total Views: 0</div>
-
-  <!-- Header with Navigation -->
   <header>
-    <a href="#" class="auth-button" onclick="openLoginModal()">Login</a>
-    <a href="#" class="auth-button" onclick="openSignupModal()">Sign Up</a>
+    <div id="userNameDisplay"></div>
+    <button id="loginButton" class="auth-button" onclick="openLoginModal()">Login</button>
+    <button id="signupButton" class="auth-button" onclick="openSignupModal()">Sign Up</button>
+    <button id="signOutButton" class="auth-button logout-btn" style="display: none;" onclick="logout()">Sign Out</button>
   </header>
 
-  <!-- Home Section -->
-  <section id="home">
-    <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">Experience a 94% UNC Execution...</p>
-    <div class="section-title">Monaco Editor Showcase</div>
-    <div id="monaco-editor-container"></div>
-
-    <div class="section-title">Pluto Executor Showcase</div>
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
+  <!-- Main Section -->
+  <section>
+    <h1 class="main-title">Welcome to Pluto Executor</h1>
+    <p class="sub-title">The most powerful executor for Roblox, unlock new possibilities.</p>
     <div class="btn-container">
-      <a href="https://discord.gg/getpluto" class="button" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-      <a href="https://github.com/XxSolarXx/Nuke-tool" class="button" target="_blank" rel="noopener noreferrer">Go to Nuke Tool</a>
-      <a href="https://github.com/XxSolarXx/pluto-executor" class="button" target="_blank" rel="noopener noreferrer">Download Pluto Executor</a>
+      <button class="button" onclick="openSignupModal()">Get Started</button>
     </div>
   </section>
 
-  <!-- Modal for Login -->
+  <!-- Login Modal -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <h2>Login</h2>
-      <input type="text" placeholder="Username" id="loginUsername" />
-      <input type="password" placeholder="Password" id="loginPassword" />
+      <input type="text" id="loginUsername" placeholder="Username" />
+      <input type="password" id="loginPassword" placeholder="Password" />
       <button onclick="login()">Login</button>
       <button class="close-btn" onclick="closeLoginModal()">Close</button>
     </div>
   </div>
 
-  <!-- Modal for Sign Up -->
+  <!-- Signup Modal -->
   <div id="signupModal" class="modal">
     <div class="modal-content">
       <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" id="signupUsername" />
-      <input type="password" placeholder="Password" id="signupPassword" />
+      <input type="text" id="signupUsername" placeholder="Username" />
+      <input type="password" id="signupPassword" placeholder="Password" />
       <button onclick="signup()">Sign Up</button>
       <button class="close-btn" onclick="closeSignupModal()">Close</button>
     </div>
   </div>
 
+  <!-- Credits -->
+  <div class="credits">
+    <p>Made by Solar. For more info, join the Discord.</p>
+  </div>
 </body>
 </html>
