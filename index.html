@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pluto Executor</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  
-  <!-- Monaco Editor CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.0/min/vs/editor/editor.main.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.0/min/vs/loader.js"></script>
-  
   <style>
     /* Global Styles */
     body {
@@ -148,7 +143,7 @@
 
     #monaco-editor-container {
       width: 800px;
-      height: 400px;
+      height: 300px;
       margin: 40px auto;
       border: 2px solid #444;
       border-radius: 8px;
@@ -171,18 +166,66 @@
       margin-bottom: 20px;
     }
 
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+      z-index: 30;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    .modal button {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .modal button:hover {
+      background-color: #0056b3;
+    }
+
+    .close-btn {
+      background-color: #333;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .logout-btn {
+      background-color: #FF5733;
+      color: white;
+    }
+    .logout-btn:hover {
+      background-color: #C44322;
+    }
   </style>
   <script>
-    require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.37.0/min/vs' }});
-    
-    require(['vs/editor/editor.main'], function() {
-      var editor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
-        value: "// Write your code here...",
-        language: "javascript",
-        theme: "vs-dark"
-      });
-    });
-
     // Simulate storing user data for login
     const users = [];
     let loggedInUser = null;
@@ -274,29 +317,48 @@
     <a href="#" class="auth-button" onclick="openSignupModal()">Sign Up</a>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <section>
-      <h1 class="main-title">Pluto Executor</h1>
-      <p class="sub-title">Your ultimate tool for executing scripts on the web.</p>
-      <div class="btn-container">
-        <button class="button">Start</button>
-        <button class="button">Stop</button>
-      </div>
-      <p class="description">Pluto Executor lets you run custom scripts for a variety of purposes. Please make sure to read the guide to get started!</p>
-    </section>
-
-    <!-- Monaco Editor Container -->
+  <!-- Home Section -->
+  <section id="home">
+    <h1 class="main-title">Pluto Executor</h1>
+    <p class="sub-title">Experience a 94% UNC Execution...</p>
+    <div class="section-title">Monaco Editor Showcase</div>
     <div id="monaco-editor-container"></div>
 
-    <!-- Showcase Image -->
-    <img class="showcase-image" src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/closeup-shuttercock.jpg" alt="Showcase Image">
+    <div class="section-title">Pluto Executor Showcase</div>
+    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
 
-    <!-- Footer -->
-    <div class="credits">
-      Made by Solar | Discord: ytz_solar | Roblox: YTZ_Solar
+    <div class="btn-container">
+      <a href="https://discord.gg/getpluto" class="button">Get Pluto Executor</a>
+      <a href="https://github.com/solarlol123" class="button">View Source Code</a>
     </div>
-  </main>
+  </section>
 
+  <!-- Footer Section -->
+  <footer class="credits">
+    <p>Made with ♥ by Solar</p>
+    <p>GitHub: <a href="https://github.com/solarlol123">Solar on GitHub</a></p>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Login</h2>
+      <input type="text" id="loginUsername" placeholder="Username">
+      <input type="password" id="loginPassword" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <button class="close-btn" onclick="closeLoginModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <h2>Sign Up</h2>
+      <input type="text" id="signupUsername" placeholder="Username">
+      <input type="password" id="signupPassword" placeholder="Password">
+      <button onclick="signup()">Sign Up</button>
+      <button class="close-btn" onclick="closeSignupModal()">Close</button>
+    </div>
+  </div>
 </body>
 </html>
