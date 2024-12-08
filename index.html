@@ -44,6 +44,16 @@
       z-index: 10;
     }
 
+    /* Views counter styles */
+    #views-counter {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      color: #00B0FF;
+      font-size: 1.2em;
+      z-index: 20;
+    }
+
     a.auth-button {
       color: #007BFF;
       text-decoration: none;
@@ -167,7 +177,7 @@
       background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
-      z-index: 20; /* Ensures modal appears above other content */
+      z-index: 20;
     }
 
     .modal-content {
@@ -176,7 +186,7 @@
       border-radius: 8px;
       width: 300px;
       text-align: center;
-      z-index: 30; /* Ensures modal content appears above modal background */
+      z-index: 30;
     }
 
     .modal input {
@@ -216,130 +226,20 @@
     }
 
   </style>
-  <!-- Monaco Editor Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
-    window.require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' }}); 
-    window.require(['vs/editor/editor.main'], function() {
-      monaco.editor.defineTheme('blackTheme', {
-        base: 'vs-dark',
-        inherit: true,
-        rules: [],
-        colors: {
-          'editor.background': '#000000'
-        }
-      });
+    let viewsCount = 0;
 
-      monaco.editor.create(document.getElementById('monaco-editor-container'), {
-        value: 'Join https://discord.gg/getpluto\nThis was made by @ytz_solar on discord\n\nprint("Pluto on top")',
-        language: 'python',
-        theme: 'blackTheme',
-        lineNumbers: "on",
-        minimap: { enabled: false },
-        fontSize: 12,
-        scrollBeyondLastLine: false,
-        wordWrap: 'on',
-        fontFamily: 'Courier New, monospace',
-        tabSize: 2,
-        indentSize: 2,
-        wrappingIndent: 'none',
-        cursorStyle: 'line',
-        wordWrapColumn: 80,
-        autoIndent: "full",
-        lineHeight: 22
-      });
-    });
-
-    let loggedIn = false;
-    let currentUser = "";  // Store the current user (if logged in)
-
-    function openLoginModal() {
-      document.getElementById("loginModal").style.display = "flex";
+    // Function to update view count
+    function updateViewCount() {
+      viewsCount++;
+      document.getElementById("views-counter").innerText = `Total Views: ${viewsCount}`;
     }
 
-    function openRegisterModal() {
-      document.getElementById("registerModal").style.display = "flex";
-    }
-
-    function closeLoginModal() {
-      document.getElementById("loginModal").style.display = "none";
-    }
-
-    function closeRegisterModal() {
-      document.getElementById("registerModal").style.display = "none";
-    }
-
-    function login() {
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-
-      // Mocking a successful login
-      if(username && password) {
-        loggedIn = true;
-        currentUser = username;
-        document.getElementById("loginModal").style.display = "none";
-        updateAuthUI();
-      }
-    }
-
-    function register() {
-      const username = document.getElementById("registerUsername").value;
-      const password = document.getElementById("registerPassword").value;
-
-      // Only allow registration if there's no existing user
-      if (currentUser) {
-        alert("A user is already registered. Only one user can exist.");
-      } else {
-        // Mocking a successful registration
-        alert("Registered successfully!");
-        currentUser = username;  // Set the current user to the newly registered user
-        closeRegisterModal();
-        updateAuthUI();
-      }
-    }
-
-    function updateAuthUI() {
-      const header = document.querySelector("header");
-
-      if (loggedIn) {
-        header.innerHTML = `
-          <span>Welcome, ${currentUser}</span>
-          <button class="button logout-btn" onclick="openLogoutModal()">Log out</button>
-        `;
-      } else {
-        header.innerHTML = `
-          <a href="javascript:void(0);" class="auth-button" onclick="openLoginModal()">Login</a>
-          <a href="javascript:void(0);" class="auth-button" onclick="openRegisterModal()">Register</a>
-        `;
-      }
-    }
-
-    function openLogoutModal() {
-      document.getElementById("logoutModal").style.display = "flex";
-    }
-
-    function closeLogoutModal() {
-      document.getElementById("logoutModal").style.display = "none";
-    }
-
-    function logout() {
-      const username = document.getElementById("logoutUsername").value;
-      const password = document.getElementById("logoutPassword").value;
-
-      if(username === currentUser && password) {
-        loggedIn = false;
-        currentUser = "";
-        closeLogoutModal();
-        updateAuthUI();
-      } else {
-        alert("Incorrect username or password.");
-      }
-    }
-
-    // Initialize UI on page load
+    // Call the function on page load to increment views count
     window.onload = function() {
+      updateViewCount();
       updateAuthUI(); // Ensure correct UI on load
-    }
+    };
   </script>
 </head>
 <body>
@@ -348,6 +248,9 @@
   <video autoplay muted loop class="background-video">
     <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
   </video>
+
+  <!-- Total Views Counter -->
+  <div id="views-counter">Total Views: 0</div>
 
   <!-- Header with Navigation -->
   <header>
@@ -382,33 +285,17 @@
     </div>
   </div>
 
-  <!-- Modal for Register -->
-  <div id="registerModal" class="modal">
-    <div class="modal-content">
-      <h2>Register</h2>
-      <input type="text" placeholder="Username" id="registerUsername" />
-      <input type="password" placeholder="Password" id="registerPassword" />
-      <button onclick="register()">Register</button>
-      <button class="close-btn" onclick="closeRegisterModal()">Close</button>
-    </div>
-  </div>
+  <script>
+    function closeLoginModal() {
+      document.getElementById('loginModal').style.display = 'none';
+    }
 
-  <!-- Modal for Logout -->
-  <div id="logoutModal" class="modal">
-    <div class="modal-content">
-      <h2>Log out</h2>
-      <input type="text" placeholder="Username" id="logoutUsername" />
-      <input type="password" placeholder="Password" id="logoutPassword" />
-      <button onclick="logout()">Log out</button>
-      <button class="close-btn" onclick="closeLogoutModal()">Close</button>
-    </div>
-  </div>
-
-  <!-- Credits Section -->
-  <section id="credits">
-    <h2 class="section-title">Credits</h2>
-    <p class="credits">This interface was made by Solar (@ytz_solar).</p>
-  </section>
+    function login() {
+      // Simulate login process (e.g., authenticate user)
+      alert('Logged in successfully!');
+      closeLoginModal();
+    }
+  </script>
 
 </body>
 </html>
