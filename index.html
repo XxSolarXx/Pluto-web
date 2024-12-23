@@ -4,362 +4,209 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pluto Executor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
-    body {
+    /* General CSS Reset */
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
-      line-height: 1.6;
-      overflow-y: auto;
-      position: relative;
-      color: #FFFFFF;
-      cursor: pointer;
-      user-select: none;
-      background-color: #000;
+      box-sizing: border-box;
     }
 
-    /* Video as background */
-    .background-video {
-      position: fixed;
+    /* Body */
+    body {
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a1137, #0c1e47); /* Darker Blue Gradient */
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite; /* Smooth Gradient Shift */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      transition: background-position 0.3s ease;
+    }
+
+    /* Animated Gradient */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Background Overlay for Depth */
+    .background-overlay {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      background: rgba(0, 0, 0, 0.8); /* Darker overlay for a more intense effect */
       z-index: -1;
     }
 
-    header {
+    /* Navbar */
+    .nav {
       display: flex;
-      justify-content: flex-end;
-      padding: 16px;
-      gap: 20px;
-      background-color: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      top: 0;
+      justify-content: space-between;
+      align-items: center;
       width: 100%;
+      padding: 20px 30px;
+      position: absolute;
+      top: 0;
       z-index: 10;
     }
 
-    /* Views counter styles */
-    #views-counter {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      color: #00B0FF;
-      font-size: 1.2em;
-      z-index: 20;
-    }
-
-    a.auth-button {
-      color: #007BFF;
-      text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      background-color: rgba(0, 0, 0, 0.6);
-      font-size: 1em;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    a.auth-button:hover {
-      background-color: #0056b3;
-      color: #FFFFFF;
-      transform: scale(1.05);
-    }
-
-    .main-title {
-      font-size: 3.5em;
+    .nav .logo {
+      font-size: 28px;
+      font-weight: bold;
       letter-spacing: 2px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      color: #00B0FF;
-      animation: fadeIn 1s ease-in-out, float 6s ease-in-out infinite;
+      color: #6ebaff;
+      text-transform: uppercase;
     }
 
-    .sub-title {
-      font-size: 1.2em;
-      color: #FFFFFF;
-      margin-bottom: 40px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      padding: 0 10px;
+    .nav a {
+      color: #a1b1d2;
+      text-decoration: none;
+      font-size: 16px;
+      margin-left: 30px;
+      transition: opacity 0.3s ease;
     }
 
-    .btn-container {
+    .nav a:hover {
+      opacity: 0.8;
+      color: #6ebaff;
+    }
+
+    /* Main Content Container */
+    .container {
+      text-align: center;
+      z-index: 1;
+      padding: 20px;
       display: flex;
-      gap: 30px;
-      justify-content: center;
-      margin-top: 24px;
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center content horizontally */
+      justify-content: center; /* Center content vertically */
+    }
+
+    .info {
+      max-width: 600px;
+      margin-bottom: 20px; /* Space between info and buttons */
+    }
+
+    .info h1 {
+      font-size: 70px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #6ebaff, #284b78);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .info p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      color: #a9b9d2;
+    }
+
+    /* Button Group */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .buttons {
+        flex-direction: row;
+        gap: 30px;
+      }
     }
 
     .button {
-      background-color: #007BFF;
-      color: #FFFFFF;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 1.1em;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      text-align: center;
       font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-      animation: slideIn 0.5s ease-in-out, float 6s ease-in-out infinite;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+      display: inline-block;
+      width: 220px;
+      text-transform: uppercase;
+      color: white;
+      background: linear-gradient(90deg, #3d4aff, #1f4d7f);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
     }
 
     .button:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
     }
 
-    section {
-      padding: 60px 16px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      border-bottom: 1px solid #333;
-      background-color: rgba(0, 0, 0, 0.8);
+    /* Discord Button Styles */
+    .button.discord {
+      background: linear-gradient(90deg, #3d4aff, #1f4d7f);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
     }
 
-    .description {
-      margin-top: 30px;
-      max-width: 700px;
-      font-size: 1.1em;
-      color: #FFFFFF;
-      padding: 0 20px;
-      line-height: 1.6;
+    /* Download Button Styles */
+    .button.download {
+      background: #6ebaff;
+      border: 2px solid #6ebaff;
+      color: black;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      margin-left: 20px; /* Move the download button to the right */
     }
 
-    .credits {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #BBBBBB;
-    }
-
-    #monaco-editor-container {
-      width: 800px;
-      height: 300px;
-      margin: 40px auto;
-      border: 2px solid #444;
-      border-radius: 8px;
-      background-color: #2d2d2d;
-      text-align: left;
-    }
-
-    .showcase-image {
-      width: 80%;
-      max-width: 800px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .section-title {
-      font-size: 2em;
-      font-weight: bold;
-      color: #00B0FF;
-      margin-bottom: 20px;
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 20;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      width: 300px;
-      text-align: center;
-      z-index: 30;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 8px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-    }
-
-    .modal button {
-      background-color: #007BFF;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .modal button:hover {
-      background-color: #0056b3;
-    }
-
-    .close-btn {
-      background-color: #333;
-      color: #fff;
-      margin-top: 10px;
-    }
-
-    .logout-btn {
-      background-color: #FF5733;
+    .button.download:hover {
+      background: #4a90e2;
       color: white;
     }
-    .logout-btn:hover {
-      background-color: #C44322;
+
+    /* Mockup Image */
+    .mockup img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-top: 30px; /* Move image down */
     }
   </style>
-  <script>
-    // Simulate storing user data for login
-    const users = [];
-    let loggedInUser = null;
-
-    function closeLoginModal() {
-      document.getElementById('loginModal').style.display = 'none';
-    }
-
-    function closeSignupModal() {
-      document.getElementById('signupModal').style.display = 'none';
-    }
-
-    function openSignupModal() {
-      document.getElementById('signupModal').style.display = 'flex';
-    }
-
-    function openLoginModal() {
-      document.getElementById('loginModal').style.display = 'flex';
-    }
-
-    function signup() {
-      const username = document.getElementById('signupUsername').value;
-      const password = document.getElementById('signupPassword').value;
-
-      if (username && password) {
-        users.push({ username, password });
-        alert('Account created successfully!');
-        closeSignupModal();
-      } else {
-        alert('Please fill in both fields.');
-      }
-    }
-
-    function login() {
-      const username = document.getElementById('loginUsername').value;
-      const password = document.getElementById('loginPassword').value;
-
-      const user = users.find(u => u.username === username && u.password === password);
-
-      if (user) {
-        loggedInUser = user;
-        alert('Logged in successfully!');
-        updateHeader();
-        closeLoginModal();
-      } else {
-        alert('Invalid credentials. Please try again.');
-      }
-    }
-
-    <iframe src="https://monaco-ashy.vercel.app/" width="100%" height="500px" frameborder="0"></iframe>
-    
-    function signout() {
-      loggedInUser = null;
-      updateHeader();
-    }
-
-    function updateHeader() {
-      const header = document.querySelector('header');
-      header.innerHTML = loggedInUser
-        ? `<span>Welcome, ${loggedInUser.username}</span><a href="#" class="auth-button logout-btn" onclick="signout()">Sign Out</a>`
-        : `<a href="#" class="auth-button" onclick="openLoginModal()">Login</a><a href="#" class="auth-button" onclick="openSignupModal()">Sign Up</a>`;
-    }
-
-    // Simulate view count only increasing when a new user joins
-    let viewers = new Set();
-
-    function updateViewCounter() {
-      const userID = Math.random().toString(36).substring(2, 15); // Simulate a unique user ID
-      if (!viewers.has(userID)) {
-        viewers.add(userID);
-        document.getElementById('views-counter').innerText = `Total Views: ${viewers.size}`;
-      }
-    }
-
-    window.onload = updateViewCounter;
-  </script>
 </head>
 <body>
+  <div class="background-overlay"></div>
 
-  <!-- Video Background -->
-  <video autoplay muted loop class="background-video">
-    <source src="https://raw.githubusercontent.com/XxSolarXx/Pluto-web/main/pluto%20interface/dark-galaxy.960x540.mp4" type="video/mp4">
-  </video>
-
-  <!-- Total Views Counter -->
-  <div id="views-counter">Total Views: 0</div>
-
-  <!-- Header with Navigation -->
-  <header>
-    <a href="#" class="auth-button" onclick="openLoginModal()">Login</a>
-    <a href="#" class="auth-button" onclick="openSignupModal()">Sign Up</a>
-  </header>
-
-  <!-- Home Section -->
-  <section id="home">
-    <h1 class="main-title">Pluto Executor</h1>
-    <p class="sub-title">Experience a 94% UNC Execution...</p>
-    <div class="section-title">Monaco Editor Showcase</div>
-    <div id="monaco-editor-container"></div>
-
-    <div class="section-title">Pluto Executor Showcase</div>
-    <img src="pluto interface/image.png" alt="Pluto Executor Showcase" class="showcase-image">
-
-    <div class="btn-container">
-      <a href="https://github.com/XxSolarXx/pluto-executor" class="button">Get Pluto Executor</a>
-      <a href="https://discord.gg/3SdU5hsAyJ" class="button">Join discord</a>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer class="credits">
-    <p>Made with ♥ by Solar</p>
-    <p>GitHub: <a href="https://www.roblox.com/users/5445640803/profile">Solar on Roblox</a></p>
-  </footer>
-
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <h2>Login</h2>
-      <input type="text" id="loginUsername" placeholder="Username">
-      <input type="password" id="loginPassword" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <button class="close-btn" onclick="closeLoginModal()">Close</button>
+  <div class="nav">
+    <div class="logo">PLUTO EXECUTOR</div>
+    <div>
+      <a href="https://getpluto.vercel.app/">Home</a>
+<a href="https://discord.gg/getpluto">Discord</a>
     </div>
   </div>
 
-  <!-- Signup Modal -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <h2>Sign Up</h2>
-      <input type="text" id="signupUsername" placeholder="Username">
-      <input type="password" id="signupPassword" placeholder="Password">
-      <button onclick="signup()">Sign Up</button>
-      <button class="close-btn" onclick="closeSignupModal()">Close</button>
+  <div class="container">
+    <div class="info">
+      <h1> Roblox Internal Cheat</h1>
+      <p>The best Roblox cheat for scripting for FREE! More information is in the discord server.</p>
+      <div class="buttons">
+        <a href="https://discord.gg/getpluto" class="button discord">Join Discord</a>
+        <a href="https://github.com/XxSolarXx/pluto-executor" class="button download">Download</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <img src="image.png" alt="Mockup">
     </div>
   </div>
 </body>
